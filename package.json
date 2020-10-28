@@ -1,0 +1,19 @@
+{
+  "name": "dressapp",
+  "version": "1.0.0",
+  "description": "Your closet in your pocket.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paniaguaadrian/DressApp.git"
+  },
+  "author": "Eric Blair & Adrian Paniagua",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paniaguaadrian/DressApp/issues"
+  },
+  "homepage": "https://github.com/paniaguaadrian/DressApp#readme"
+}
