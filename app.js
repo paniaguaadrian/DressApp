@@ -20,6 +20,9 @@ require("./config/passport")(passport);
 // * Call our function to connect to DB
 connectDB();
 
+// * Routes to auth.js for normal login
+const authRouter = require("./routes/auth");
+
 const app = express();
 
 // * Login
@@ -55,6 +58,8 @@ app.use(passport.session());
 // * Routes
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/authG"));
+// * Routes to auth.js for normal login
+// app.use("/", require("./routes/auth"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(
