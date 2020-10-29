@@ -25,6 +25,8 @@ const authRouter = require("./routes/auth");
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+
 // * Login
 if (process.env.NODE_ENV === "development") {
   // * Middleware
@@ -58,8 +60,7 @@ app.use(passport.session());
 // * Routes
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/authG"));
-// * Routes to auth.js for normal login
-// app.use("/", require("./routes/auth"));
+app.use(require("./routes/auth"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(
