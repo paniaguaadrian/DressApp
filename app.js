@@ -1,10 +1,12 @@
 const path = require("path");
 const express = require("express");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const hbs = require("hbs");
 const passport = require("passport");
 const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 // * Import Connection from DB
 const connectDB = require("./config/db");
@@ -33,12 +35,16 @@ app.set("view engine", "hbs");
 // * Static folder
 app.use(express.static(path.join(__dirname, "public")));
 
+// * Partials folder
+hbs.registerPartials(__dirname + "/views/partials");
+
 // * Sessions middleware
 app.use(
   session({
     secret: "dressapp", // whatever we want
     resave: false,
     saveUninitialized: false, // Don't create a session until something is stored on the DB.
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 
