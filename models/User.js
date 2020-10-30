@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
-
-
 const Schema = mongoose.Schema;
+
 const userSchema = new Schema(
   {
     // name: String,
     name: String,
     email: String,
     password: String,
-    googleId: String,
     // password: { type: String, required: true },
     description: String,
     // TODO add a default picture
