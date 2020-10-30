@@ -1,17 +1,23 @@
-const bcrypt = require("bcrypt");
-const passport = require("passport");
+const express = require("express");
+const router = express.Router();
 
-const router = require("express").Router();
+const bcrypt = require("bcryptjs");
+const bcryptSalt = 10;
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 
+// * Loggin route ///////////////////////////////////////////////////////////////////
 
-// * Loggin route
-router.post("/auth/login", async (req, res) => {
+router.get("/login", (req, res, next) => {
+  res.render("auth/login", { errorMessage: "" });
+});
+
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (email === "" || password === "") {
-    res.render("auth/login", {
+    res.render("login", {
       errorMessage: "Please enter both, username and password to sign up",
     });
     return;
@@ -25,51 +31,74 @@ router.post("/auth/login", async (req, res) => {
         errorMessage: "The email doesn't exist.",
       });
       return;
-    }
+    } else if (bcrypt.compareSync(password, user.password)) {
+      const userWithoutPass = await User.findOne({ email }).select("-password");
+      const payload = { userID: userWithoutPass._id };
 
-    if (!user.password) {
-      return res.send("Email not registered locally. Sign in with google");
+      const token = jwt.sign(payload, process.env.SECRET_SESSION, {
+        expiresIn: "1h",
+      });
+      res.cookie("token", token, { httpOnly: true });
+      // ! Problema
+      res.status(200).redirect("/dashboard");
+      // res.redirect("/dashboard");
+    } else {
+      res.render("login", { errorMessage: "Incorrect password" });
     }
-
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      return res.send("Incorrect email or password");
-    }
-
-    req.login(user, (error) => {
-      if (error) {
-        console.log(error);
-        return res.send("Something went wrong");
-      } else {
-        passport.authenticate("local")(req, res, () => {
-          res.status(200).redirect("/dashboard");
-        });
-      }
-    });
   } catch (error) {
     console.log(error);
   }
 });
 
-// * Sign up route
-router.post("/auth/signup", async (req, res) => {
+// * Sign up route ////////////////////////////////////////////////////////////////////
+
+router.get("/signup", (req, res, next) => {
+  res.render("auth/signup", { errorMessage: "" });
+});
+
+router.post("/signup", async (req, res) => {
   const { email, name, password } = req.body;
 
+  if ((email === "") | (password === "") || name === "") {
+    res.render("auth/signup", {
+      errorMessage: "Enter name, email and password to sign up",
+    });
+    return;
+  }
+
   try {
-    let user = await User.findOne({ email });
-    if (user) {
-      return res.send("Email already registered");
+    const existingUser = await User.findOne({ email });
+    if (existingUser !== null) {
+      res.render("auth/signup", {
+        errorMessage: `The email ${email} is already in use`,
+      });
+      return;
     }
 
-    user = await User.create({ name, email, password });
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashedPass = bcrypt.hashSync(password, salt);
+    const userSubmission = { name: name, email: email, password: hashedPass };
 
-    console.log("Sign up successful");
+    const theUser = new User(userSubmission);
 
-    res.status(201).redirect("/");
+    theUser.save((err) => {
+      if (err) {
+        res.render("auth/signup", {
+          errorMessage: "Something went worng. Try again later",
+        });
+        return;
+      }
+      // ! Problema
+      res.redirect("dashboard");
+    });
   } catch (error) {
-    console.log(error);
+    next(error);
+    return;
   }
 });
+
+
+// * Log out route ////////////////////////////////////////////////////////////////////
 
 router.get("/auth/logout", (req, res) => {
   req.logout();

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const hbs = require("hbs");
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -26,6 +27,7 @@ const authRouter = require("./routes/auth");
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // * Login
 if (process.env.NODE_ENV === "development") {
