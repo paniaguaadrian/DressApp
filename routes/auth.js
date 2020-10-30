@@ -17,9 +17,8 @@ router.get("/login", (req, res, next) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
   if (email === "" || password === "") {
-    res.render("login", {
+    res.render("auth/login", {
       errorMessage: "Please enter both, username and password to sign up",
     });
     return;
@@ -27,14 +26,12 @@ router.post("/login", async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    console.log(user);
     if (!user) {
-      res.render("login", {
+      res.render("auth/login", {
         errorMessage: "The email doesn't exist.",
       });
       return;
     } else if (bcrypt.compareSync(password, user.password)) {
-      console.log("ingresa el cif");
       const userWithoutPass = await User.findOne({ email }).select("-password");
       const payload = { userID: userWithoutPass._id };
 
@@ -42,9 +39,8 @@ router.post("/login", async (req, res) => {
         expiresIn: "1h",
       });
       res.cookie("token", token, { httpOnly: true });
-      // ! Problema
+      console.log("hola");
       res.status(200).redirect("/mycloset");
-      // res.render("dashboard");
     } else {
       res.render("login", { errorMessage: "Incorrect password" });
     }
@@ -60,7 +56,7 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { email, name, password } = req.body;
+  const { name, email, password } = req.body;
 
   if ((email === "") | (password === "") || name === "") {
     res.render("auth/signup", {
@@ -82,9 +78,17 @@ router.post("/signup", async (req, res) => {
     const hashedPass = bcrypt.hashSync(password, salt);
     const userSubmission = { name: name, email: email, password: hashedPass };
 
-    await User.create(userSubmission);
-
-    res.redirect("/mycloset");
+    const theUser = new User(userSubmission);
+    theUser.save((err) => {
+      if (err) {
+        res.render("signup", {
+          errorMessage: "Something went wrong. Try again later",
+        });
+        return;
+      }
+      console.log("hello man");
+      res.redirect("/");
+    });
   } catch (error) {
     next(error);
     return;
@@ -93,8 +97,8 @@ router.post("/signup", async (req, res) => {
 
 // * Log out route ////////////////////////////////////////////////////////////////////
 
-router.get("/logout", (req, res) => {
-  req.logout();
+router.get("/logout", withAuth, (req, res) => {
+  res.cookie("token", "", { expires: new Date(0) });
   res.redirect("/");
 });
 

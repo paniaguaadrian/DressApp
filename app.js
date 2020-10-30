@@ -1,5 +1,5 @@
-require('dotenv').config();
-const bodyParser = require('body-parser')
+require("dotenv").config();
+const bodyParser = require("body-parser");
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -7,24 +7,19 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const hbs = require("hbs");
 const cookieParser = require("cookie-parser");
-const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 // * Import Connection from DB
 const connectDB = require("./config/db");
 
-// * Passport config
-require("./config/passport")(passport);
-
 // * Call our function to connect to DB
 connectDB();
 
 // * Routes to auth.js for normal login
 const authRouter = require("./routes/auth");
-const authIndex = require("./routes/index")
-const authGoogleRouter = require('./routes/authG')
-const closetRouter = require('./routes/private/closet');
+const authIndex = require("./routes/index");
+const closetRouter = require("./routes/private/closet");
 
 const app = express();
 
@@ -57,23 +52,15 @@ app.use(
   })
 );
 
-// * Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
 // * Routes
 app.use("/", authIndex);
-app.use("/auth", authGoogleRouter);
 app.use("/auth", authRouter);
-app.use('/mycloset', closetRouter);
-
+app.use("/mycloset", closetRouter);
 
 // * Call our function to connect to DB
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(
@@ -81,4 +68,4 @@ app.listen(
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );
 
-module.exports = app
+module.exports = app;
