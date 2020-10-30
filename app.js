@@ -22,6 +22,8 @@ connectDB();
 
 // * Routes to auth.js for normal login
 const authRouter = require("./routes/auth");
+const authIndex = require("./routes/index")
+const authGoogleRouter = require('./routes/authG')
 const closetRouter = require('./routes/private/closet');
 
 const app = express();
@@ -60,9 +62,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // * Routes
-app.use("/", require("./routes/index"));
-app.use("/auth", require("./routes/authG"));
-app.use(require("./routes/auth"));
+app.use("/", authIndex);
+app.use("/auth", authGoogleRouter);
+app.use("/auth", authRouter);
 app.use('/mycloset', closetRouter);
 
 
@@ -78,3 +80,5 @@ app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );
+
+module.exports = app

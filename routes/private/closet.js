@@ -7,8 +7,15 @@ const topCloud = require('../../config/cloudinary');
 const withAuth = require("../../middleware/auth");
 
 router.get('/', withAuth, async (req,res,next) =>{
+  if (req.userID) {
+
+      const userUpdated = await User.findById(req.userID)
+
+      res.locals.currentUserInfo = userUpdated;
+
     const allItems = await Item.find()
     res.render('private/closet/index.hbs', {allItems})
+  }
 })
 
 router.get('/add-item', withAuth, async (req,res,next) =>{

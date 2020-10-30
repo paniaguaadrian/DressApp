@@ -93,7 +93,7 @@ router.post("/signup", async (req, res) => {
 
 // * Log out route ////////////////////////////////////////////////////////////////////
 
-router.get("/auth/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
