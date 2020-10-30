@@ -3,7 +3,7 @@
     <button type="submit">New clothes</button>
 </form>
 
-{{#each allItems}}
+{{#each currentUserInfo.items}}
 <div>
     <a href="{{this._id}}">{{this.name}}</a>
     <p>{{this.description}}</p>
