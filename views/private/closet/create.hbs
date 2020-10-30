@@ -1,0 +1,29 @@
+<div>
+    <h2>Add an item</h2>
+    <form action="/add-item" method="post" enctype="multipart/form-data">
+        <label for="">Name:</label>
+        <input type="text" name="name">
+
+        <label for="">Description:</label>
+        <input type="text" name="description">
+
+        <label for="">Image:</label>
+        <input type="file" name="photo">
+
+        <input type="radio" name="type" value="top">
+        <label for="">Top</label><br>
+        <input type="radio" name="type" value="bottom">
+        <label for="">Bottom</label><br>
+        <input type="radio" name="type" value="feet">
+        <label for="">Feet</label>
+
+        <label for="">Brand:</label>
+        <input type="text" name="brand">
+
+        <label for="">Price:</label>
+        <input type="text" name="price">
+        
+        <button type="submit">ADD</button>
+    </form>
+    <button><a href="/mycloset">BACK</a></button>
+</div>

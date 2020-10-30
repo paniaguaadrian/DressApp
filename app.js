@@ -1,5 +1,5 @@
-require("dotenv").config();
-
+require('dotenv').config();
+const bodyParser = require('body-parser')
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -22,6 +22,7 @@ connectDB();
 
 // * Routes to auth.js for normal login
 const authRouter = require("./routes/auth");
+const closetRouter = require('./routes/private/closet');
 
 const app = express();
 
@@ -62,6 +63,14 @@ app.use(passport.session());
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/authG"));
 app.use(require("./routes/auth"));
+
+// * Call our function to connect to DB
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/', closetRouter);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(

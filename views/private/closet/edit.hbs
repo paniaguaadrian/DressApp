@@ -1,0 +1,29 @@
+<div>
+    <h2>{{item.name}}</h2>
+    <form action="/{{item._id}}" method="post">
+        <label for="">Name:</label>
+        <input type="text" name="name" value="{{item.name}}">
+
+        <label for="">Description:</label>
+        <input type="text" name="description" value="{{item.description}}">
+
+        <label for="">Image:</label>
+        <input type="text" name="image" value="{{item.image}}">
+
+        <input type="radio" name="type" value="top">
+        <label for="">Top</label><br>
+        <input type="radio" name="type" value="bottom">
+        <label for="">Bottom</label><br>
+        <input type="radio" name="type" value="feet">
+        <label for="">Feet</label>
+
+        <label for="">Brand:</label>
+        <input type="text" name="brand" value="{{item.brand}}">
+
+        <label for="">Price:</label>
+        <input type="text" name="price" value="{{item.price}}">
+        
+        <button type="submit">EDIT</button>
+    </form>
+    <button><a href="/mycloset">BACK</a></button>
+</div>
