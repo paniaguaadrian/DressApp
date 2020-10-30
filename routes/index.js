@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/authG");
+const withAuth = require("../middleware/auth");
 
 // * @desc    Login/Landing page
 // * @route   GET /
@@ -16,6 +17,12 @@ router.get("/signup", ensureGuest, (req, res) => {
 // * @route   GET /dashboard
 // ! OJO CAMBIAR ESTA RUTA TAMBIEN CON LA FINAL DE LA APP!!!!
 router.get("/dashboard", ensureAuth, (req, res) => {
+  res.render("dashboard");
+});
+
+// * @desc    Dashboard Comun Login
+// * @route   GET /dashboardLoginComun
+router.get("/dashboardLoginComun", withAuth, (req, res) => {
   res.render("dashboard");
 });
 
