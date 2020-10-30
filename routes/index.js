@@ -22,8 +22,8 @@ router.get("/dashboard", ensureAuth, (req, res) => {
 
 // * @desc    Dashboard Comun Login
 // * @route   GET /dashboardLoginComun
-router.get("/dashboardLoginComun", withAuth, (req, res) => {
-  res.render("dashboard");
-});
+// router.get("/", withAuth, (req, res) => {
+//   res.render("private/closet/index");
+// });
 
 module.exports = router;

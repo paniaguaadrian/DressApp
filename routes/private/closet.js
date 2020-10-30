@@ -4,30 +4,29 @@ const router = express.Router()
 const User = require('../../models/User')
 const Item = require('../../models/Item')
 const topCloud = require('../../config/cloudinary');
+const withAuth = require("../../middleware/auth");
 
-router.get('/mycloset', async (req,res,next) =>{
+router.get('/', withAuth, async (req,res,next) =>{
     const allItems = await Item.find()
     res.render('private/closet/index.hbs', {allItems})
 })
 
-router.get('/add-item', async (req,res,next) =>{
+router.get('/add-item', withAuth, async (req,res,next) =>{
     res.render('private/closet/create.hbs')
 })
 
 router.post('/add-item', topCloud.single("photo"), async (req,res,next) =>{
     const {name, description, type, brand, price} = req.body
-    console.log(req.file, 'lo que quieras')
     const image = req.file.url
-    console.log(image)
     try {
       const newItem = await Item.create({name, description, image, type, brand, price})
-      res.redirect('/add-item')
+      res.redirect('/mycloset/add-item')
     } catch (error) {
       console.log(error);
     }
 })
 
-router.get('/:id/edit', async (req, res, next) => {
+router.get('/:id/edit', withAuth,async (req, res, next) => {
     try{
        let item = await Item.findById(req.params.id)
         console.log('Retrieved item with id:', req.params.id);
@@ -62,7 +61,7 @@ router.post('/:id/delete', async (req, res, next) => {
     }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', withAuth, async (req, res, next) => {
     try{
       let item = await Item.findById(req.params.id)
         res.render('private/closet/show.hbs', {item});

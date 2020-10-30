@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
       });
       res.cookie("token", token, { httpOnly: true });
       // ! Problema
-      res.status(200).redirect("/dashboardLoginComun");
+      res.status(200).redirect("/mycloset");
       // res.render("dashboard");
     } else {
       res.render("login", { errorMessage: "Incorrect password" });
@@ -84,7 +84,7 @@ router.post("/signup", async (req, res) => {
 
     await User.create(userSubmission);
 
-    res.redirect("/dashboardLoginComun");
+    res.redirect("/mycloset");
   } catch (error) {
     next(error);
     return;

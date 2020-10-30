@@ -63,13 +63,14 @@ app.use(passport.session());
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/authG"));
 app.use(require("./routes/auth"));
+app.use('/mycloset', closetRouter);
+
 
 // * Call our function to connect to DB
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', closetRouter);
 
 
 const PORT = process.env.PORT || 3000;
