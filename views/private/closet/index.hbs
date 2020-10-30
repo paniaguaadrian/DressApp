@@ -1,11 +1,13 @@
-<h1> Add an item</h1>
-<a href="/add-item">New clothes</a>
+
+<form action="/add-item">
+    <button type="submit">New clothes</button>
+</form>
 
 {{#each allItems}}
 <div>
     <a href="{{this._id}}">{{this.name}}</a>
     <p>{{this.description}}</p>
-    <p>{{this.image}}</p>
+    <img src="{{this.image}}" alt="picture">
     <form action="/{{this._id}}/edit">
         <button type="submit">Edit</button>
     </form>

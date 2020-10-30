@@ -1,6 +1,6 @@
 <div>
     <h2>Add an item</h2>
-    <form action="/add-item" method="post">
+    <form action="/add-item" method="post" enctype="multipart/form-data">
         <label for="">Name:</label>
         <input type="text" name="name">
 
@@ -8,7 +8,7 @@
         <input type="text" name="description">
 
         <label for="">Image:</label>
-        <input type="text" name="image">
+        <input type="file" name="photo">
 
         <input type="radio" name="type" value="top">
         <label for="">Top</label><br>

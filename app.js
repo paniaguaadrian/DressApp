@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const bodyParser = require('body-parser')
 const path = require("path");
 const express = require("express");
@@ -10,7 +10,6 @@ const hbs = require("hbs")
 // * Import Connection from DB
 const connectDB = require("./config/db");
 
-dotenv.config({ path: "./config/config.env" });
 
 // * Call our function to connect to DB
 connectDB();

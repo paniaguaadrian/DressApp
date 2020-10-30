@@ -5,7 +5,7 @@ const itemSchema = new Schema({
     name: String,
     description: String,
     image: String,
-    type: {type: String},
+    type: String,
     brand: String,
     price: Number
 });
