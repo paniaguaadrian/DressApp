@@ -13,7 +13,7 @@ const userSchema = new Schema(
     image: { type: String, default: "./images/profile-default.png" },
     outfits: [{ type: Schema.Types.ObjectId, ref: "Outfit" }],
     items: [{ type: Schema.Types.ObjectId, ref: "Item" }],
-    collections: [{ type: Schema.Types.ObjectId, ref: "Collections" }],
+    collections: [{ type: Schema.Types.ObjectId, ref: "Collection" }],
   },
   { timestamps: true }
 );

@@ -1,19 +1,38 @@
-
+<h1>myCloset</h1>
 <form action="/mycloset/add-item">
     <button type="submit">New clothes</button>
 </form>
-
-{{#each currentUserInfo.items}}
+<h3>My clothes</h3>
+{{#each userUpdated.items}}
 <div>
     <a href="{{this._id}}">{{this.name}}</a>
     <p>{{this.description}}</p>
-    <img src="{{this.image}}" alt="picture">
-    <form action="/mycloset/{{this._id}}/edit">
+    <img src="{{this.image}}" alt="picture" style="width: 100px;">
+    <form action="/mycloset/{{this._id}}/edit-item">
         <button type="submit">Edit</button>
     </form>
-    <form action="/mycloset/{{this._id}}/delete" method="post">
+    <form action="/mycloset/{{this._id}}/delete-item" method="post">
         <button type="submit">Delete</button>
     </form>
 </div>
 {{/each}}
+
+<form action="/mycloset/add-outfit">
+    <button type="submit">New outfit</button>
+</form>
+<h3>My outfits</h3>
+{{#each userUpdated.outfits}}
+<div>
+    <a href="{{this._id}}">{{this.name}}</a>
+    <p>{{this.description}}</p>
+    <img src="{{this.imageTop}}" alt="picture" class="items">
+    <form action="/mycloset/{{this._id}}/edit-outfit">
+        <button type="submit">Edit</button>
+    </form>
+    <form action="/mycloset/{{this._id}}/delete-outfit" method="post">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+{{/each}}
+
 <a href="/auth/logout">Log out</a>

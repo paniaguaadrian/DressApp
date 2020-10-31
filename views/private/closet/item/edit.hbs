@@ -1,14 +1,16 @@
 <div>
     <h2>{{item.name}}</h2>
-    <form action="/{{item._id}}" method="post">
+    <form action="/mycloset/{{item._id}}/edit-item" method="post" enctype="multipart/form-data">
         <label for="">Name:</label>
         <input type="text" name="name" value="{{item.name}}">
 
         <label for="">Description:</label>
         <input type="text" name="description" value="{{item.description}}">
 
+        <img src="{{item.image}}" alt="" name="image" value="{{item.image}}">
+
         <label for="">Image:</label>
-        <input type="text" name="image" value="{{item.image}}">
+        <input type="file" name="photo">
 
         <input type="radio" name="type" value="top">
         <label for="">Top</label><br>
