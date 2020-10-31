@@ -25,12 +25,31 @@
 <div>
     <a href="{{this._id}}">{{this.name}}</a>
     <p>{{this.description}}</p>
-    <img src="{{this.imageTop}}" alt="picture" class="items">
+    <img src="{{this.imageTop}}" alt="picture" style="width: 100px">
+    <img src="{{this.imageBottom}}" alt="picture" style="width: 100px">
+    <img src="{{this.imageFeet}}" alt="picture" style="width: 100px">
     <form action="/mycloset/{{this._id}}/edit-outfit">
         <button type="submit">Edit</button>
     </form>
     <form action="/mycloset/{{this._id}}/delete-outfit" method="post">
         <button type="submit">Delete</button>
+    </form>
+</div>
+{{/each}}
+
+<form action="/mycloset/add-collection">
+    <button type="submit">New collection</button>
+</form>
+<h3>My collections</h3>
+{{#each userUpdated.collections}}
+<div>
+    <a href="{{this._id}}">{{this.name}}</a>
+    <p>{{this.description}}</p>
+    <form action="/mycloset/{{this._id}}/edit-collection">
+        <button type="submit">Add outfits to this collection</button>
+    </form>
+    <form action="/mycloset/{{this._id}}/delete-collection" method="post">
+        <button type="submit">Delete collection</button>
     </form>
 </div>
 {{/each}}

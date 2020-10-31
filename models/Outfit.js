@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const outfitSchema = new Schema({
     name: String,
     description: String,
-    imageTop: { type: Schema.Types.ObjectId, ref: 'Item'}, 
-    imageBottom: { type: Schema.Types.ObjectId, ref: 'Item'}, 
-    imageFeet: { type: Schema.Types.ObjectId, ref: 'Item' },
+    imageTop: String, 
+    imageBottom: String, 
+    imageFeet: String,
 });
 
 // What is this?

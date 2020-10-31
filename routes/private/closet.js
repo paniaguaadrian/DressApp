@@ -58,9 +58,10 @@ router.get('/add-outfit', withAuth, async (req,res,next) =>{
   res.render('private/closet/outfit/create.hbs', {topItems, bottomItems,feetItems})
 })
 
-router.post('/add-outfit', withAuth, topCloud.single("photo"), async (req,res,next) =>{
+router.post('/add-outfit', withAuth, async (req,res,next) =>{
   const {name, description, imageTop, imageBottom, imageFeet} = req.body
   try {
+    console.log('These are the outfits ' + imageTop + ' and ' + imageBottom + ' and ' + imageFeet)
     const newOutfit= await Outfit.create({name, description, imageTop, imageBottom, imageFeet})
     await User.findByIdAndUpdate(req.userID, {$push:{outfits: newOutfit}})
     res.render('private/closet/outfit/create.hbs')
@@ -70,14 +71,17 @@ router.post('/add-outfit', withAuth, topCloud.single("photo"), async (req,res,ne
 })
 
 router.get('/add-collection', withAuth, async (req,res,next) =>{
-  res.render('private/closet/collection/create.hbs')
+  const thisUser = await User.findById(req.userID)
+  .populate('outfits')
+  .exec()
+  res.render('private/closet/collection/create.hbs', {thisUser})
 })
 
-router.post('/add-collection', withAuth, topCloud.single("photo"), async (req,res,next) =>{
-  const {name, description, outfits} = req.body
+router.post('/add-collection', withAuth, async (req,res,next) =>{
+  const {name, description} = req.body
   try {
-    const newCollection = await Collection.create({name, description, outfits})
-    await User.findByIdAndUpdate(req.userID, {$push:{collection: newCollection}})
+    const newCollection= await Collection.create({name, description})
+    await User.findByIdAndUpdate(req.userID, {$push:{collections: newCollection}})
     res.render('private/closet/collection/create.hbs')
   } catch (error) {
     console.log(error);
@@ -106,6 +110,51 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
         { $set: { name, description, image, type, brand, price} })
           res.redirect("/mycloset");  
   });
+
+  router.get('/:id/edit-outfit', withAuth, async (req, res, next) => {
+    const topItems = await Item.find({type: 'top'})
+    const bottomItems = await Item.find({type: 'bottom'})
+    const feetItems = await Item.find({type: 'feet'})
+    try{
+        let outfit = await Outfit.findById(req.params.id)
+        console.log('Retrieved outfit with id:', outfit);
+        res.render('private/closet/outfit/edit.hbs', {outfit, topItems, bottomItems,feetItems});
+    }catch(err){
+        console.log('Error while editing the item: ', err);
+    }
+  });
+  
+  router.post('/:id/edit-outfit', async (req, res, next) => {
+    console.log(req.body)
+    let {name, description, imageTop, imageBottom, imageFeet} = req.body;
+    await Outfit.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $set: { name, description, imageTop, imageBottom, imageFeet} })
+          res.redirect("/mycloset");  
+  });
+
+  router.get('/:id/edit-collection', withAuth, async (req, res, next) => {
+    const thisUser = await User.findById(req.userID)
+    .populate('outfits')
+    .exec()
+    try{
+        let collection = await Collection.findById(req.params.id)
+        console.log('Retrieved outfit with id:', collection);
+        res.render('private/closet/collection/edit.hbs', {thisUser, collection});
+    }catch(err){
+        console.log('Error while editing the collection: ', err);
+    }
+  });
+  
+  router.post('/:id/edit-collection', async (req, res, next) => {
+    const {outfit} = req.body
+  try {
+    await Collection.findByIdAndUpdate({ _id: req.params.id }, {$push:{outfits: outfit}})
+    res.render('private/closet/collection/edit.hbs')
+  } catch (error) {
+    console.log(error);
+  }
+});
   
 router.post('/:id/delete-item', withAuth, async (req, res, next) => {
     try{
@@ -116,6 +165,28 @@ router.post('/:id/delete-item', withAuth, async (req, res, next) => {
     }catch(err){
         console.log('Error while deleting the item: ', err);
     }
+});
+
+router.post('/:id/delete-outfit', withAuth, async (req, res, next) => {
+  try{
+      const outfitID = req.params.id
+      await User.update({_id: req.userID}, { $pull: {outfits: outfitID}})
+      await Outfit.findByIdAndRemove(outfitID)
+      res.redirect('/mycloset');
+  }catch(err){
+      console.log('Error while deleting the item: ', err);
+  }
+});
+
+router.post('/:id/delete-collection', withAuth, async (req, res, next) => {
+  try{
+      const collectionID = req.params.id
+      await User.update({_id: req.userID}, { $pull: {collections: collectionID}})
+      await Collection.findByIdAndRemove(collectionID)
+      res.redirect('/mycloset');
+  }catch(err){
+      console.log('Error while deleting the item: ', err);
+  }
 });
 
 
