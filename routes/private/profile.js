@@ -6,7 +6,7 @@ const topCloud = require("../../config/cloudinary");
 const withAuth = require("../../middleware/auth");
 
 router.get("/", withAuth, async (req, res, next) => {
-  res.render("private/profile");
+  res.render("private/profile", { username: req.userID.name });
 });
 
 module.exports = router;

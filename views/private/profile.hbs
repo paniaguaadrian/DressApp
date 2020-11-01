@@ -44,20 +44,31 @@
       <div id="body">
         <h1>myProfile</h1>
 
+<h3>Name:</h3>
+<h4>Description:</h4>
+<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta dolore itaque explicabo doloribus maiores magnam distinctio, ad facere excepturi, quaerat, dolores ducimus placeat? Voluptates odio saepe et quos, architecto quis?</p>
+<img class="profile_picture" src="" alt="">
+<a href="">Edit Profile</a>
+ <a href="/auth/logout">Log out</a>
+
+
+
+        <h1>welcome back{{user.name}}{{this.name}}{{name}}{{req.userID.name}}</h1>
+        {{user.name}}{{this.name}}{{name}}
+        {{#each userUpdated}}
+        <h3>Welcome back{{user.name}}{{this.name}}{{name}}</h3>
         
 
-        <a href="/auth/logout">Log out</a>
+
+        {{/each}}
+
+       
       </div>
 
       {{> menu_mobile}}
     </div>
 
     <!-- Boostrap javascript -->
-    <script>
-      $(function () {
-        $("#myTab li:last-child a").tab("show");
-      });
-    </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
