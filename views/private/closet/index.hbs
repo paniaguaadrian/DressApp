@@ -1,38 +1,78 @@
-<h1>myCloset</h1>
-<form action="/mycloset/add-item">
-    <button type="submit">New clothes</button>
-</form>
-<h3>My clothes</h3>
-{{#each userUpdated.items}}
-<div>
-    <a href="{{this._id}}">{{this.name}}</a>
-    <p>{{this.description}}</p>
-    <img src="{{this.image}}" alt="picture" style="width: 100px;">
-    <form action="/mycloset/{{this._id}}/edit-item">
-        <button type="submit">Edit</button>
-    </form>
-    <form action="/mycloset/{{this._id}}/delete-item" method="post">
-        <button type="submit">Delete</button>
-    </form>
-</div>
-{{/each}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {{!-- Materialize css --}}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
-<form action="/mycloset/add-outfit">
-    <button type="submit">New outfit</button>
-</form>
-<h3>My outfits</h3>
-{{#each userUpdated.outfits}}
-<div>
-    <a href="{{this._id}}">{{this.name}}</a>
-    <p>{{this.description}}</p>
-    <img src="{{this.imageTop}}" alt="picture" class="items">
-    <form action="/mycloset/{{this._id}}/edit-outfit">
-        <button type="submit">Edit</button>
-    </form>
-    <form action="/mycloset/{{this._id}}/delete-outfit" method="post">
-        <button type="submit">Delete</button>
-    </form>
-</div>
-{{/each}}
+    {{!-- Font-awesome --}}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
 
-<a href="/auth/logout">Log out</a>
+    {{!-- Google-fonts --}}
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Poiret+One&display=swap"
+      rel="stylesheet"
+    />
+
+    {{!-- Stylesheets css --}}
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <title>DressApp</title>
+  </head>
+  <body>
+    {{> top_page_mobile}}
+
+    <h1>myCloset</h1>
+    <form action="/mycloset/add-item">
+      <button type="submit">New clothes</button>
+    </form>
+    <h3>My clothes</h3>
+    {{#each userUpdated.items}}
+    <div>
+      <a href="{{ this._id }}">{{ this.name }}</a>
+      <p>{{ this.description }}</p>
+      <img src="{{ this.image }}" alt="picture" style="width: 100px" />
+      <form action="/mycloset/{{ this._id }}/edit-item">
+        <button type="submit">Edit</button>
+      </form>
+      <form action="/mycloset/{{ this._id }}/delete-item" method="post">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+    {{/each}}
+
+    <form action="/mycloset/add-outfit">
+      <button type="submit">New outfit</button>
+    </form>
+    <h3>My outfits</h3>
+    {{#each userUpdated.outfits}}
+    <div>
+      <a href="{{ this._id }}">{{ this.name }}</a>
+      <p>{{ this.description }}</p>
+      <img src="{{ this.imageTop }}" alt="picture" class="items" />
+      <form action="/mycloset/{{ this._id }}/edit-outfit">
+        <button type="submit">Edit</button>
+      </form>
+      <form action="/mycloset/{{ this._id }}/delete-outfit" method="post">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+    {{/each}}
+
+    <a href="/auth/logout">Log out</a>
+
+    {{> menu_mobile}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>

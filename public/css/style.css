@@ -16,7 +16,7 @@ html,
 body {
   font-family: "Open Sans", sans-serif;
   height: 100%;
-  background-color: #f3f4f7;
+  background-color: #fdfdfd;
 }
 
 body {
@@ -105,5 +105,48 @@ ul {
 .signup-link {
   padding-left: 0.3rem;
   text-decoration: underline !important;
+}
+
+.container-logo-top {
+  background-color: #f3f4f7;
+  border-bottom: 1px solid #797979;
+}
+
+.logo {
+  font-family: "Poiret One";
+  font-size: 2rem;
+  color: #000000;
+  text-align: center;
+  padding: 1rem;
+}
+
+.container-menu-mobile {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.menu-mobile {
+  background-color: #f3f4f7;
+  border-top: 1px solid #797979;
+  padding-top: 1rem;
+}
+
+.menu-mobile-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  text-align: center;
+}
+
+.menu-mobile-text {
+  font-size: 0.8rem;
 }
 /*# sourceMappingURL=style.css.map */
