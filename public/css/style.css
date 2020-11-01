@@ -62,7 +62,7 @@ ul {
 
 #body {
   padding-top: 90px;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 }
 
 .login-container {
@@ -139,7 +139,7 @@ ul {
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: -10px;
 }
 
 .menu-mobile {
@@ -164,5 +164,18 @@ ul {
 
 .menu-mobile-text {
   font-size: 0.8rem;
+}
+
+.nav {
+  margin-top: 2.5rem;
+  background-color: #f3f4f7;
+}
+
+.nav-item {
+  text-align: center;
+}
+
+.tab-pane {
+  margin-top: 2rem;
 }
 /*# sourceMappingURL=style.css.map */
