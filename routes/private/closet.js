@@ -49,7 +49,7 @@ router.post('/add-item', withAuth, topCloud.single("photo"), async (req,res,next
 })
 
 router.get('/add-outfit', withAuth, async (req,res,next) =>{
-  const allOutfits = await Outfit.find()
+  const thisUser = await User.findById(req.userID)
   .populate('items')
   .exec()
   const topItems = await Item.find({type: 'top'})
@@ -133,24 +133,38 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
           res.redirect("/mycloset");  
   });
 
-  router.get('/:id/edit-collection', withAuth, async (req, res, next) => {
+  router.get('/:id/edit-collection', async (req, res, next) => {
+    const theCollection = Collection.findById(req.params.id)
+    res.render('private/closet/collection/edit.hbs', {theCollection})
+  })
+
+  router.post('/:id/edit-collection', async (req, res, next) => {
+    console.log(req.body)
+    let {name, description} = req.body;
+    await Outfit.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $set: { name, description} })
+          res.redirect("/mycloset");  
+  });
+
+  router.get('/:id/add-collection', withAuth, async (req, res, next) => {
     const thisUser = await User.findById(req.userID)
     .populate('outfits')
     .exec()
     try{
         let collection = await Collection.findById(req.params.id)
-        console.log('Retrieved outfit with id:', collection);
-        res.render('private/closet/collection/edit.hbs', {thisUser, collection});
+        console.log('Retrieved collection with id:', collection);
+        res.render('private/closet/collection/add.hbs', {thisUser, collection});
     }catch(err){
-        console.log('Error while editing the collection: ', err);
+        console.log('Error while adding to the collection: ', err);
     }
   });
   
-  router.post('/:id/edit-collection', async (req, res, next) => {
+  router.post('/:id/add-collection', async (req, res, next) => {
     const {outfit} = req.body
   try {
     await Collection.findByIdAndUpdate({ _id: req.params.id }, {$push:{outfits: outfit}})
-    res.render('private/closet/collection/edit.hbs')
+    res.render('private/closet/collection/add.hbs')
   } catch (error) {
     console.log(error);
   }
@@ -188,6 +202,5 @@ router.post('/:id/delete-collection', withAuth, async (req, res, next) => {
       console.log('Error while deleting the item: ', err);
   }
 });
-
 
 module.exports = router;

@@ -43,9 +43,12 @@
 <h3>My collections</h3>
 {{#each userUpdated.collections}}
 <div>
-    <a href="{{this._id}}">{{this.name}}</a>
+    <h3>{{this.name}}</h3>
     <p>{{this.description}}</p>
     <form action="/mycloset/{{this._id}}/edit-collection">
+        <button type="submit">Edit this collection</button>
+    </form>
+    <form action="/mycloset/{{this._id}}/add-collection">
         <button type="submit">Add outfits to this collection</button>
     </form>
     <form action="/mycloset/{{this._id}}/delete-collection" method="post">
