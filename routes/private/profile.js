@@ -19,12 +19,14 @@ router.post(
   withAuth,
   topCloud.single("photo"),
   async (req, res, next) => {
+    // console.log(`req body: ${req.body}`);
     const { description } = req.body;
-    console.log(req.body);
-    // const image = req.file.url;
-    // console.log(`photo: ${image}`);
+    // console.log(req.body);
+    const image = req.file.url;
+    console.log(`photo: ${image}`);
     await User.findByIdAndUpdate(req.userID, {
-      description: description,
+      description,
+      image,
     });
     res.redirect("/myprofile");
   }
