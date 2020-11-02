@@ -44,13 +44,17 @@
       <div id="body">
         <h1>myProfile</h1>
 
-        <form action="/myprofile/edit-profile" method="post">
+        <form
+          action="/myprofile/edit-profile"
+          method="post"
+          enctype="multipart/form-data"
+        >
           <h5>Edit image Profile</h5>
           <img
-            src="{{ item.image }}"
+            src="{{ user.image }}"
             alt=""
             name="image"
-            value="{{ item.image }}"
+            value="{{ user.image }}"
           />
 
           <label for="">Image:</label>
