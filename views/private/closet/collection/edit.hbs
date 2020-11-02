@@ -8,5 +8,17 @@
         <input type="text" name="description" value="{{theCollection.description}}">
         <button type="submit">EDIT</button>
     </form>
+    {{#each theCollection.outfits}}  
+     <form action="/mycloset/{{../theCollection._id}}/delete-outfit-collection" method="post">
+        <h3>{{this.name}}</h3>
+        <input type="hidden" name="outfitID" value="{{this._id}}" >
+            <img src="{{this.imageTop}}" alt="" style="width: 100px;">
+            <img src="{{this.imageBottom}}" alt="" style="width: 100px;">
+            <img src="{{this.imageFeet}}" alt="" style="width: 100px;">
+         
+                <button type="submit">Delete</button>
+       
+        </form>
+    {{/each}}
     <button><a href="/mycloset">BACK</a></button>
 </div>

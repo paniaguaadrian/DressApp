@@ -7,6 +7,7 @@ const outfitSchema = new Schema({
     imageTop: String, 
     imageBottom: String, 
     imageFeet: String,
+    collections: [{ type: Schema.Types.ObjectId, ref: 'Collection' }],
 });
 
 // What is this?

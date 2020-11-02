@@ -7,6 +7,7 @@ const Outfit = require('../../models/Outfit')
 const Collection = require('../../models/Collection')
 const topCloud = require('../../config/cloudinary');
 const withAuth = require("../../middleware/auth");
+const { collection } = require("../../models/User");
 
 router.get('/', withAuth, async (req,res,next) =>{
   if (req.userID) {
@@ -52,10 +53,20 @@ router.get('/add-outfit', withAuth, async (req,res,next) =>{
   const thisUser = await User.findById(req.userID)
   .populate('items')
   .exec()
-  const topItems = await Item.find({type: 'top'})
-  const bottomItems = await Item.find({type: 'bottom'})
-  const feetItems = await Item.find({type: 'feet'})
-  res.render('private/closet/outfit/create.hbs', {topItems, bottomItems,feetItems})
+  let topItems = []
+  let bottomItems = []
+  let feetItems = []
+  const userItems = thisUser.items
+  userItems.forEach(function(item) {
+    if(item.type === 'top'){
+      topItems.push(item)
+    }else if (item.type === 'bottom'){
+      bottomItems.push(item)
+    }else if (item.type === 'feet'){
+      feetItems.push(item)
+    }
+  })
+  res.render('private/closet/outfit/create.hbs', {topItems, bottomItems, feetItems})
 })
 
 router.post('/add-outfit', withAuth, async (req,res,next) =>{
@@ -134,14 +145,25 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
   });
 
   router.get('/:id/edit-collection', async (req, res, next) => {
-    const theCollection = Collection.findById(req.params.id)
+    const theCollection = await Collection.findById(req.params.id)
+    .populate('outfits')
+    console.log('This is the collection ' + theCollection)
+    // const theOutfits = theCollection.outfits
+    // const getOutfits = []
+    // for(let i = 0; i < theOutfits.length; i++){
+    //   let outfit = await Outfit.findById(theOutfits[i])
+    //   outfit.collectionID= req.params.id
+    //   getOutfits.push(outfit)
+    // }
+
+    // console.log(`These are my outfits ${getOutfits}`)
     res.render('private/closet/collection/edit.hbs', {theCollection})
   })
 
   router.post('/:id/edit-collection', async (req, res, next) => {
-    console.log(req.body)
+    console.log('req body de edit collection ' + req.body)
     let {name, description} = req.body;
-    await Outfit.findByIdAndUpdate(
+    await Collection.findByIdAndUpdate(
         { _id: req.params.id },
         { $set: { name, description} })
           res.redirect("/mycloset");  
@@ -162,8 +184,10 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
   
   router.post('/:id/add-collection', async (req, res, next) => {
     const {outfit} = req.body
+    console.log(outfit)
   try {
     await Collection.findByIdAndUpdate({ _id: req.params.id }, {$push:{outfits: outfit}})
+    await Outfit.findByIdAndUpdate({_id: outfit}, {$push:{collections: req.params.id}})
     res.render('private/closet/collection/add.hbs')
   } catch (error) {
     console.log(error);
@@ -197,6 +221,17 @@ router.post('/:id/delete-collection', withAuth, async (req, res, next) => {
       const collectionID = req.params.id
       await User.update({_id: req.userID}, { $pull: {collections: collectionID}})
       await Collection.findByIdAndRemove(collectionID)
+      res.redirect('/mycloset');
+  }catch(err){
+      console.log('Error while deleting the item: ', err);
+  }
+});
+
+router.post('/:id/delete-outfit-collection', withAuth, async (req, res, next) => {
+   const _id = req.body.outfitID
+  try{
+      const collectionID = req.params.id
+      const collection = await Collection.findByIdAndUpdate(collectionID, { $pull: {outfits: _id}})
       res.redirect('/mycloset');
   }catch(err){
       console.log('Error while deleting the item: ', err);
