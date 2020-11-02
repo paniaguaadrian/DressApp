@@ -85,7 +85,8 @@ router.post('/add-outfit', withAuth, async (req,res,next) =>{
     console.log('These are the outfits ' + imageTop + ' and ' + imageBottom + ' and ' + imageFeet)
     const newOutfit= await Outfit.create({name, description, imageTop, imageBottom, imageFeet})
     await User.findByIdAndUpdate(req.userID, {$push:{outfits: newOutfit}})
-    res.render('private/closet/outfit/create.hbs')
+
+    res.redirect('add-outfit')
   } catch (error) {
     console.log(error);
   }
@@ -103,7 +104,7 @@ router.post('/add-collection', withAuth, async (req,res,next) =>{
   try {
     const newCollection= await Collection.create({name, description})
     await User.findByIdAndUpdate(req.userID, {$push:{collections: newCollection}})
-    res.render('private/closet/collection/create.hbs')
+    res.redirect('/mycloset/add-collection')
   } catch (error) {
     console.log(error);
   }
@@ -120,13 +121,14 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
   });
   
   router.post('/:id/edit-item', topCloud.single("photo"), async (req, res, next) => {
-    console.log(req.body)
-    let {name, description, image, type, brand, price} = req.body;
+    let {name, description, imageBefore, type, brand, price} = req.body;
+
     if(req.file){
       image = req.file.url
-      
+    } else if(!req.file || req.file === ''){
+      image = imageBefore
     }
-    console.log('this is the image ' + image)
+
     await Item.findByIdAndUpdate(
         { _id: req.params.id },
         { $set: { name, description, image, type, brand, price} })
@@ -135,31 +137,22 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
 
   router.get('/:id/edit-outfit', withAuth, async (req, res, next) => {
     const thisUser = await User.findById(req.userID)
+    .populate('items')
+    .exec()
     const outfit = req.params.id
-    const theirItems = thisUser.items
-    const theItems = []
-    const topItems = []
-    const bottomItems = []
-    const feetItems = []
-    console.log(theirItems)
-
-    for(let i = 0; i < theirItems.length; i++){
-      let items = await Item.findById(theirItems[i])
-      theItems.push(items)
-    }
-
-    for(let i =0; i < theItems.length; i++){
-      if(theItems[i].type === 'top'){
-        topItems.push(theItems[i])
+    let topItems = []
+    let bottomItems = []
+    let feetItems = []
+    const userItems = thisUser.items
+    userItems.forEach(function(item) {
+      if(item.type === 'top'){
+        topItems.push(item)
+      }else if (item.type === 'bottom'){
+        bottomItems.push(item)
+      }else if (item.type === 'feet'){
+        feetItems.push(item)
       }
-      if(theItems[i].type === 'bottom'){
-        bottomItems.push(theItems[i])
-      }
-      if(theItems[i].type === 'feet'){
-        feetItems.push(theItems[i])
-      }
-    }
-
+    })
     try{
         res.render('private/closet/outfit/edit.hbs', {outfit, topItems, bottomItems,feetItems});
     }catch(err){
@@ -220,7 +213,7 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
   try {
     await Collection.findByIdAndUpdate({ _id: req.params.id }, {$push:{outfits: outfit}})
     await Outfit.findByIdAndUpdate({_id: outfit}, {$push:{collections: req.params.id}})
-    res.render('private/closet/collection/add.hbs')
+    res.redirect(`/mycloset/${req.params.id}/add-collection`)
   } catch (error) {
     console.log(error);
   }

@@ -1,5 +1,5 @@
 <div>
-    <h2>Edit this collection</h2>
+    <h2>{{theCollection.name}}</h2>
     <form action="/mycloset/{{theCollection._id}}/edit-collection" method="post">
         <label for="">Name:</label>
         <input type="text" name="name" value="{{theCollection.name}}">

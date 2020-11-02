@@ -14,18 +14,14 @@ router.get("/edit-profile", withAuth, async (req, res, next) => {
   res.render("private/edit-profile.hbs", { user });
 });
 
-router.post(
-  "/edit-profile",
-  withAuth,
-  topCloud.single("photo"),
-  async (req, res, next) => {
-    const { description } = req.body;
-    console.log(req.body);
-    // const image = req.file.url;
-    // console.log(`photo: ${image}`);
-    await User.findByIdAndUpdate(req.userID, {
-      description: description,
-    });
+router.post("/edit-profile", withAuth, topCloud.single("photo"), async (req, res, next) => {
+    const { description, imageBefore } = req.body;
+    if(req.file){
+      image = req.file.url
+    } else if(!req.file || req.file === ''){
+      image = imageBefore
+    }
+    await User.findByIdAndUpdate({ _id: req.userID }, { $set: {description, imageBefore } });
     res.redirect("/myprofile");
   }
 );
