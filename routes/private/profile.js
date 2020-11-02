@@ -19,12 +19,12 @@ router.post("/edit-profile", async (req, res, next) => {
     description: req.body.description,
   };
   let { description } = req.body;
-  // console.log(`req.body.description: ${req.body.description}`);
+  console.log(`req.body.description: ${req.body.description}`);
   User.update({ _id: req.userID }, updatedUser);
-  // console.log(`updatedUser: ${updatedUser}`);
-  // console.log(`req.userID: ${req.userID}`);
+  console.log(`updatedUser: ${updatedUser}`);
+  console.log(`req.userID: ${req.userID}`);
 
-  await User.findByIdAndUpdate({ $set: { description } });
+  // await User.findByIdAndUpdate({ $set: { description } });
   res.redirect("/myprofile");
 });
 

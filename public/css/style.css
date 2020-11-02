@@ -168,14 +168,21 @@ ul {
 
 .nav {
   margin-top: 2.5rem;
+  padding: 1rem;
   background-color: #f3f4f7;
 }
 
-.nav-item {
-  text-align: center;
-}
-
-.tab-pane {
-  margin-top: 2rem;
+.nav-pills {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  font-size: 0.9rem;
 }
 /*# sourceMappingURL=style.css.map */
