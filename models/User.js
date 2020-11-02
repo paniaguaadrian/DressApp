@@ -10,7 +10,7 @@ const userSchema = new Schema(
     // password: { type: String, required: true },
     description: String,
     // TODO add a default picture
-    image: { type: String, default: "./images/profile-default.png" },
+    image: { type: String, default: "images/profile-default.svg" },
     outfits: [{ type: Schema.Types.ObjectId, ref: "Outfit" }],
     items: [{ type: Schema.Types.ObjectId, ref: "Item" }],
     collections: [{ type: Schema.Types.ObjectId, ref: "Collection" }],

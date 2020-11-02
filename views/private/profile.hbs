@@ -42,18 +42,29 @@
       {{> top_page_mobile}}
 
       <div id="body">
-        {{{body}}}
+        <h1>myProfile</h1>
+
+        <div class="user-info">
+          <img class="profile_picture" src="{{ user.image }}" alt="" />
+
+          <h3>Username:</h3>
+          <h4>{{ user.name }}</h4>
+
+          <p>
+            {{ user.description }}
+          </p>
+        </div>
+        <div class="user-btn">
+          <a href="/myprofile/edit-profile">Edit Profile</a>
+          <br />
+          <a href="/auth/logout">Log out</a>
+        </div>
       </div>
 
       {{> menu_mobile}}
     </div>
 
     <!-- Boostrap javascript -->
-    <script>
-      $(function () {
-        $("#myTab li:last-child a").tab("show");
-      });
-    </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

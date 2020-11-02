@@ -1,53 +1,63 @@
 const path = require("path");
-const express = require('express')
-const router = express.Router()
-const User = require('../../models/User')
-const Item = require('../../models/Item')
-const Outfit = require('../../models/Outfit')
-const Collection = require('../../models/Collection')
-const topCloud = require('../../config/cloudinary');
+const express = require("express");
+const router = express.Router();
+const User = require("../../models/User");
+const Item = require("../../models/Item");
+const Outfit = require("../../models/Outfit");
+const Collection = require("../../models/Collection");
+const topCloud = require("../../config/cloudinary");
 const withAuth = require("../../middleware/auth");
 const { collection } = require("../../models/User");
 
-router.get('/', withAuth, async (req,res,next) =>{
+router.get("/", withAuth, async (req, res, next) => {
   if (req.userID) {
     try {
-  
       const userUpdated = await User.findById(req.userID)
-      .populate('items')
-      .populate('outfits')
-      .populate('collections')
-      .exec()
+        .populate("items")
+        .populate("outfits")
+        .populate("collections")
+        .exec();
       res.locals.currentUserInfo = userUpdated;
 
-    res.render('private/closet/index.hbs', {userUpdated})
+      res.render("private/closet/index.hbs", { userUpdated });
     } catch (error) {
-        next(error);
-        return;
+      next(error);
+      return;
     }
   } else {
-    res.redirect('/')
-  // en caso contrario (si no hay token) redirigimos a la home
-  // otra opción es definir la respuesta con status 401, y renderizamos nuestra vista 'home' con un errorMessage ('Unauthorized: No token provided')
-
+    res.redirect("/");
+    // en caso contrario (si no hay token) redirigimos a la home
+    // otra opción es definir la respuesta con status 401, y renderizamos nuestra vista 'home' con un errorMessage ('Unauthorized: No token provided')
   }
-})
+});
 
-router.get('/add-item', withAuth, async (req,res,next) =>{
-    res.render('private/closet/item/create.hbs')
-})
+router.get("/add-item", withAuth, async (req, res, next) => {
+  res.render("private/closet/item/create.hbs");
+});
 
-router.post('/add-item', withAuth, topCloud.single("photo"), async (req,res,next) =>{
-    const {name, description, type, brand, price} = req.body
-    const image = req.file.url
+router.post(
+  "/add-item",
+  withAuth,
+  topCloud.single("photo"),
+  async (req, res, next) => {
+    const { name, description, type, brand, price } = req.body;
+    const image = req.file.url;
     try {
-      const newItem = await Item.create({name, description, image, type, brand, price})
-      await User.findByIdAndUpdate(req.userID, {$push:{items: newItem}})
-      res.render('private/closet/item/create.hbs')
+      const newItem = await Item.create({
+        name,
+        description,
+        image,
+        type,
+        brand,
+        price,
+      });
+      await User.findByIdAndUpdate(req.userID, { $push: { items: newItem } });
+      res.render("private/closet/item/create.hbs");
     } catch (error) {
       console.log(error);
     }
-})
+  }
+);
 
 router.get('/add-outfit', withAuth, async (req,res,next) =>{
   const thisUser = await User.findById(req.userID)
@@ -79,7 +89,7 @@ router.post('/add-outfit', withAuth, async (req,res,next) =>{
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 router.get('/add-collection', withAuth, async (req,res,next) =>{
   const thisUser = await User.findById(req.userID)
@@ -97,7 +107,7 @@ router.post('/add-collection', withAuth, async (req,res,next) =>{
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 router.get('/:id/edit-item', withAuth, async (req, res, next) => {
     try{

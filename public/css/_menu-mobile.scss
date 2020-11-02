@@ -1,0 +1,23 @@
+.container-menu-mobile {
+  height: 85px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: -10px;
+}
+.menu-mobile {
+  background-color: $bg-color;
+  border-top: 1px solid rgb(121, 121, 121);
+  padding-top: 1rem;
+}
+
+.menu-mobile-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.menu-mobile-text {
+  font-size: 0.8rem;
+}

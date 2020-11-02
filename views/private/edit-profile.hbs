@@ -42,18 +42,38 @@
       {{> top_page_mobile}}
 
       <div id="body">
-        {{{body}}}
+        <h1>myProfile</h1>
+
+        <form
+          action="/myprofile/edit-profile"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <h5>Edit image Profile</h5>
+          <img
+            src="{{ user.image }}"
+            alt=""
+            name="image"
+            value="{{ user.image }}"
+          />
+
+          <label for="">Image:</label>
+          <input type="file" name="photo" />
+          <h5>Edit description</h5>
+          <input
+            type="text"
+            name="description"
+            value="{{ user.description }}"
+          />
+          <button type="submit">Edit profile</button>
+        </form>
+        <a href="/myprofile">Return to profile</a>
       </div>
 
       {{> menu_mobile}}
     </div>
 
     <!-- Boostrap javascript -->
-    <script>
-      $(function () {
-        $("#myTab li:last-child a").tab("show");
-      });
-    </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -20,6 +20,7 @@ connectDB();
 const authRouter = require("./routes/auth");
 const authIndex = require("./routes/index");
 const closetRouter = require("./routes/private/closet");
+const profileRouter = require("./routes/private/profile");
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use(
 app.use("/", authIndex);
 app.use("/auth", authRouter);
 app.use("/mycloset", closetRouter);
+app.use("/myprofile", profileRouter);
 
 // * Call our function to connect to DB
 
