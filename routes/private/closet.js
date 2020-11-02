@@ -134,12 +134,33 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
   });
 
   router.get('/:id/edit-outfit', withAuth, async (req, res, next) => {
-    const topItems = await Item.find({type: 'top'})
-    const bottomItems = await Item.find({type: 'bottom'})
-    const feetItems = await Item.find({type: 'feet'})
+    const thisUser = await User.findById(req.userID)
+    const outfit = req.params.id
+    const theirItems = thisUser.items
+    const theItems = []
+    const topItems = []
+    const bottomItems = []
+    const feetItems = []
+    console.log(theirItems)
+
+    for(let i = 0; i < theirItems.length; i++){
+      let items = await Item.findById(theirItems[i])
+      theItems.push(items)
+    }
+
+    for(let i =0; i < theItems.length; i++){
+      if(theItems[i].type === 'top'){
+        topItems.push(theItems[i])
+      }
+      if(theItems[i].type === 'bottom'){
+        bottomItems.push(theItems[i])
+      }
+      if(theItems[i].type === 'feet'){
+        feetItems.push(theItems[i])
+      }
+    }
+
     try{
-        let outfit = await Outfit.findById(req.params.id)
-        console.log('Retrieved outfit with id:', outfit);
         res.render('private/closet/outfit/edit.hbs', {outfit, topItems, bottomItems,feetItems});
     }catch(err){
         console.log('Error while editing the item: ', err);
