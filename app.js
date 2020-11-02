@@ -21,6 +21,7 @@ const authRouter = require("./routes/auth");
 const authIndex = require("./routes/index");
 const closetRouter = require("./routes/private/closet");
 const profileRouter = require("./routes/private/profile");
+const communityRouter = require("./routes/private/community");
 
 const app = express();
 
@@ -58,6 +59,7 @@ app.use("/", authIndex);
 app.use("/auth", authRouter);
 app.use("/mycloset", closetRouter);
 app.use("/myprofile", profileRouter);
+app.use("/mycommunity", communityRouter);
 
 // * Call our function to connect to DB
 
