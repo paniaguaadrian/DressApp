@@ -114,8 +114,9 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
     let {name, description, image, type, brand, price} = req.body;
     if(req.file){
       image = req.file.url
-      console.log(image)
+      
     }
+    console.log('this is the image ' + image)
     await Item.findByIdAndUpdate(
         { _id: req.params.id },
         { $set: { name, description, image, type, brand, price} })
