@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,13 +48,13 @@
           <li class="nav-item" role="presentation">
             <a
               class="pill-navbar"
-              id="pills-collections-tab"
+              id="pills-clothes-tab"
               data-toggle="pill"
-              href="#pills-collections"
+              href="#pills-clothes"
               role="tab"
-              aria-controls="pills-collections"
-              aria-selected="true"
-              >Collections</a
+              aria-controls="pills-clothes"
+              aria-selected="false"
+              >Clothes</a
             >
           </li>
           <li class="nav-item" role="presentation">
@@ -70,45 +69,44 @@
               >Outfits</a
             >
           </li>
+
           <li class="nav-item" role="presentation">
             <a
               class="pill-navbar"
-              id="pills-clothes-tab"
+              id="pills-collections-tab"
               data-toggle="pill"
-              href="#pills-clothes"
+              href="#pills-collections"
               role="tab"
-              aria-controls="pills-clothes"
-              aria-selected="false"
-              >Clothes</a
+              aria-controls="pills-collections"
+              aria-selected="true"
+              >Collections</a
             >
           </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
           <div
             class="tab-pane fade show active"
-            id="pills-collections"
+            id="pills-clothes"
             role="tabpanel"
-            aria-labelledby="pills-collections-tab"
+            aria-labelledby="pills-clothes-tab"
           >
-            <form action="/mycloset/add-collection">
-    <button type="submit">New collection</button>
-</form>
-<h3>My collections</h3>
-{{#each userUpdated.collections}}
-<div>
-    <h3>{{this.name}}</h3>
-    <p>{{this.description}}</p>
-    <form action="/mycloset/{{this._id}}/edit-collection">
-        <button type="submit">View this collection</button>
-    </form>
-    <form action="/mycloset/{{this._id}}/add-collection">
-        <button type="submit">Add outfits to this collection</button>
-    </form>
-    <form action="/mycloset/{{this._id}}/delete-collection" method="post">
-        <button type="submit">Delete collection</button>
-    </form>
-</div>
-{{/each}}
+            <form action="/mycloset/add-item">
+              <button type="submit">New clothes</button>
+            </form>
+            <h3>My clothes</h3>
+            {{#each userUpdated.items}}
+            <div>
+              <a href="{{ this._id }}">{{ this.name }}</a>
+              <p>{{ this.description }}</p>
+              <img src="{{ this.image }}" alt="picture" style="width: 100px" />
+              <form action="/mycloset/{{ this._id }}/edit-item">
+                <button type="submit">Edit</button>
+              </form>
+              <form action="/mycloset/{{ this._id }}/delete-item" method="post">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+            {{/each}}
           </div>
           <div
             class="tab-pane fade"
@@ -117,48 +115,68 @@
             aria-labelledby="pills-outfits-tab"
           >
             <form action="/mycloset/add-outfit">
-    <button type="submit">New outfit</button>
-</form>
-<h3>My outfits</h3>
-{{#each userUpdated.outfits}}
-<div>
-    <a href="{{this._id}}">{{this.name}}</a>
-    <p>{{this.description}}</p>
-    <img src="{{this.imageTop}}" alt="picture" style="width: 100px">
-    <img src="{{this.imageBottom}}" alt="picture" style="width: 100px">
-    <img src="{{this.imageFeet}}" alt="picture" style="width: 100px">
-    <form action="/mycloset/{{this._id}}/edit-outfit">
-        <button type="submit">Edit</button>
-    </form>
-    <form action="/mycloset/{{this._id}}/delete-outfit" method="post">
-        <button type="submit">Delete</button>
-    </form>
-</div>
-{{/each}}
+              <button type="submit">New outfit</button>
+            </form>
+            <h3>My outfits</h3>
+            {{#each userUpdated.outfits}}
+            <div>
+              <a href="{{ this._id }}">{{ this.name }}</a>
+              <p>{{ this.description }}</p>
+              <img
+                src="{{ this.imageTop }}"
+                alt="picture"
+                style="width: 100px"
+              />
+              <img
+                src="{{ this.imageBottom }}"
+                alt="picture"
+                style="width: 100px"
+              />
+              <img
+                src="{{ this.imageFeet }}"
+                alt="picture"
+                style="width: 100px"
+              />
+              <form action="/mycloset/{{ this._id }}/edit-outfit">
+                <button type="submit">Edit</button>
+              </form>
+              <form
+                action="/mycloset/{{ this._id }}/delete-outfit"
+                method="post"
+              >
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+            {{/each}}
           </div>
           <div
             class="tab-pane fade"
-            id="pills-clothes"
+            id="pills-collections"
             role="tabpanel"
-            aria-labelledby="pills-clothes-tab"
+            aria-labelledby="pills-collections-tab"
           >
-            <form action="/mycloset/add-item">
-    <button type="submit">New clothes</button>
-</form>
-<h3>My clothes</h3>
-{{#each userUpdated.items}}
-<div>
-    <a href="{{this._id}}">{{this.name}}</a>
-    <p>{{this.description}}</p>
-    <img src="{{this.image}}" alt="picture" style="width: 100px;">
-    <form action="/mycloset/{{this._id}}/edit-item">
-        <button type="submit">Edit</button>
-    </form>
-    <form action="/mycloset/{{this._id}}/delete-item" method="post">
-        <button type="submit">Delete</button>
-    </form>
-</div>
-{{/each}}
+            <form action="/mycloset/add-collection">
+              <button type="submit">New collection</button>
+            </form>
+            <h3>My collections</h3>
+            {{#each userUpdated.collections}}
+            <div>
+              <h3>{{ this.name }}</h3>
+              <p>{{ this.description }}</p>
+              <form action="/mycloset/{{ this._id }}/edit-collection">
+                <button type="submit">Edit this collection</button>
+              </form>
+              <form action="/mycloset/{{ this._id }}/add-collection">
+                <button type="submit">Add outfits to this collection</button>
+              </form>
+              <form
+                action="/mycloset/{{ this._id }}/delete-collection"
+                method="post"
+              >
+                <button type="submit">Delete collection</button>
+              </form>
+            </div>
+            {{/each}}
           </div>
         </div>
       </div>
