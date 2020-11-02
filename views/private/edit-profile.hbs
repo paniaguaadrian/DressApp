@@ -44,20 +44,26 @@
       <div id="body">
         <h1>myProfile</h1>
 
-        <div class="user-info">
-          <img class="profile_picture" src="" alt="" />
+        <form action="/myprofile/edit-profile" method="post">
+          <h5>Edit image Profile</h5>
+          <img
+            src="{{ item.image }}"
+            alt=""
+            name="image"
+            value="{{ item.image }}"
+          />
 
-          <h3>Username:</h3>
-          <p>Adrián</p>
-          <h4>I'm a...</h4>
-
-          <p>{{ user.description }}</p>
-        </div>
-        <div class="user-btn">
-          <a href="/myprofile/edit-profile">Edit Profile</a>
-          <br />
-          <a href="/auth/logout">Log out</a>
-        </div>
+          <label for="">Image:</label>
+          <input type="file" name="photo" />
+          <h5>Edit description</h5>
+          <input
+            type="text"
+            name="description"
+            value="{{ user.description }}"
+          />
+          <button type="submit">Edit profile</button>
+        </form>
+        <a href="/myprofile">Return to profile</a>
       </div>
 
       {{> menu_mobile}}
