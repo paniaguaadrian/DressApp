@@ -1,0 +1,66 @@
+.community_users_list {
+  margin: 1rem;
+  padding: 1rem 1rem 1rem 1rem;
+  border: 2px solid teal;
+  border-radius: 10px;
+  background-color: $bg-color;
+  -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+.name_image {
+  display: flex;
+  flex-direction: row;
+  //   justify-content: space-evenly;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.image_community {
+  width: 3rem;
+  border-radius: 50%;
+  //   border: 1px solid teal;
+  margin-right: 1rem;
+}
+
+.user_name {
+  font-size: 1.2rem;
+  font-weight: 400;
+  border-bottom: 2px solid teal;
+}
+
+.user_description {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.user_contact {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.user_email_comm {
+  font-size: 0.7rem;
+  font-weight: 100;
+}
+
+.user_data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: right;
+  text-align: right;
+}
+
+.data_item {
+  margin: 0;
+  font-size: 0.5rem;
+  font-weight: 600;
+}
+
+.page-title {
+  font-family: $logo-font;
+}
