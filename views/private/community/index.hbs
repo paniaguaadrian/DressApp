@@ -12,3 +12,13 @@
   </a>
 </div>
 {{/each}}
+
+<h1>My follows</h1>
+
+{{#each me.following}}
+<div>
+  <p>{{this.name}} has uploaded {{this.items.length}} items.</p>
+  <p>{{this.name}} has uploaded {{this.outfits.length}} outfits.</p>
+  <p>{{this.name}} has uploaded {{this.collections.length}} collections.</p>
+</div>
+{{/each}}

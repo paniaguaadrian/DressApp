@@ -4,7 +4,6 @@ const User = require("../../models/User");
 const Item = require("../../models/Item");
 const Outfit = require("../../models/Outfit");
 const Collection = require("../../models/Collection");
-const topCloud = require("../../config/cloudinary");
 const withAuth = require("../../middleware/auth");
 
 
@@ -17,8 +16,11 @@ router.get("/", withAuth, async (req, res, next) => {
         }
     })
 
-    // console.log(allButMe)
-    res.render("private/community/index.hbs", {allButMe});
+    const me = await User.findById(req.userID)
+    .populate('following')
+    .exec()
+
+    res.render("private/community/index.hbs", {allButMe, me});
 });
 
 router.get("/:id/closet", withAuth, async (req, res, next) => {
@@ -101,6 +103,21 @@ router.post("/:id/add-collection", withAuth, async (req, res, next) => {
 
 router.post("/:id/follow", withAuth, async (req, res, next) => {
     await User.findByIdAndUpdate(req.userID, {$push:{following: req.params.id}})
+    res.redirect(`/mycommunity/${req.params.id}/closet`)
+})
+
+router.post("/:id/closet/:item/like-item", withAuth, async (req, res, next) => {
+    const awesomeItem = await Item.findByIdAndUpdate(req.params.item, {$push:{likes: req.userID, hasLikes: true}})
+    res.redirect(`/mycommunity/${req.params.id}/closet`)
+})
+
+router.post("/:id/closet/:outfit/like-outfit", withAuth, async (req, res, next) => {
+    const awesomeOutfit = await Outfit.findByIdAndUpdate(req.params.outfit, {$push:{likes: req.userID, hasLikes: true}})
+    res.redirect(`/mycommunity/${req.params.id}/closet`)
+})
+
+router.post("/:id/closet/:collection/like-collection", withAuth, async (req, res, next) => {
+    const awesomeCollection = await Collection.findByIdAndUpdate(req.params.collection, {$push:{likes: req.userID , hasLikes: true}})
     res.redirect(`/mycommunity/${req.params.id}/closet`)
 })
 

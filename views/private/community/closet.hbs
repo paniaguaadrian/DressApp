@@ -26,9 +26,15 @@
     <div>
       <a href="{{ this._id }}">{{ this.name }}</a>
       <p>{{ this.description }}</p>
+      {{#if this.hasLikes}}
+      <p>This item has {{this.likes.length}} like(s)</p>
+      {{/if}}
       <img src="{{ this.image }}" alt="picture" style="width: 100px" />
       <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/add-item" method="post">
         <button type="submit">Add</button>
+      </form>
+      <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-item" method="post">
+        <button type="submit">Like</button>
       </form>
     </div>
     {{/each}}
@@ -40,11 +46,17 @@
     <div>
       <a href="{{ this._id }}">{{ this.name }}</a>
       <p>{{ this.description }}</p>
+      {{#if this.hasLikes}}
+      <p>This outfit has {{this.likes.length}} like(s)</p>
+      {{/if}}
       <img src="{{ this.imageTop }}" alt="picture" style="width: 100px" />
       <img src="{{ this.imageBottom }}" alt="picture" style="width: 100px" />
       <img src="{{ this.imageFeet }}" alt="picture" style="width: 100px" />
       <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/add-outfit" method="post">
         <button type="submit">Add</button>
+      </form>
+      <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-outfit" method="post">
+        <button type="submit">Like</button>
       </form>
     </div>
     {{/each}}
@@ -56,11 +68,17 @@
     <div>
       <h3>{{ this.name }}</h3>
       <p>{{ this.description }}</p>
+      {{#if this.hasLikes}}
+      <p>This collection has {{this.likes.length}} like(s)</p>
+      {{/if}}
       <form action="/mycommunity/{{ this._id }}/view-collection">
         <button type="submit">View this collection</button>
       </form>
       <form action="/mycommunity/{{ this._id }}/add-collection" method="post">
         <button type="submit">Add collection</button>
+      </form>
+      <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
+        <button type="submit">Like</button>
       </form>
     </div>
     {{/each}}

@@ -8,7 +8,8 @@ const itemSchema = new Schema({
     type: String,
     brand: String,
     price: Number,
-    likes: [{ type: Schema.Types.ObjectId, ref: "User" }]
+    likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    hasLikes: false
 });
 
 // What is this?

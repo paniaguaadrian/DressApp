@@ -5,7 +5,8 @@ const collectionSchema = new Schema({
     name: String,
     description: String,
     outfits: [{ type: Schema.Types.ObjectId, ref: 'Outfit' }],
-    likes: [{ type: Schema.Types.ObjectId, ref: "User" }] 
+    likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    hasLikes: false 
 });
 
 // What is this?
