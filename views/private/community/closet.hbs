@@ -42,7 +42,7 @@
       {{> top_page_mobile}}
 
       <div id="body">
-        <h1>myCloset</h1>
+        <h1>{{thisUser.name}}'s Closet</h1>
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li class="nav-item" role="presentation">
@@ -90,19 +90,14 @@
             role="tabpanel"
             aria-labelledby="pills-clothes-tab"
           >
-            <form action="/mycloset/add-item">
-              <button type="submit">New clothes</button>
-            </form>
-            <h3>My clothes</h3>
+          
+            <h3>{{thisUser.name}}'s clothes</h3>
             {{#each thisUser.items}}
             <div>
               <a href="{{ this._id }}">{{ this.name }}</a>
               <p>{{ this.description }}</p>
               <img src="{{ this.image }}" alt="picture" style="width: 100px" />
-              <form action="/mycloset/{{ this._id }}/edit-item">
-                <button type="submit">Edit</button>
-              </form>
-              <form action="/mycommunity/{{ this._id }}/add-item" method="post">
+              <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/add-item" method="post">
                 <button type="submit">Add</button>
               </form>
             </div>
@@ -114,10 +109,8 @@
             role="tabpanel"
             aria-labelledby="pills-outfits-tab"
           >
-            <form action="/mycloset/add-outfit">
-              <button type="submit">New outfit</button>
-            </form>
-            <h3>My outfits</h3>
+            
+            <h3>{{thisUser.name}}'s outfits</h3>
             {{#each thisUser.outfits}}
             <div>
               <a href="{{ this._id }}">{{ this.name }}</a>
@@ -137,13 +130,7 @@
                 alt="picture"
                 style="width: 100px"
               />
-              <form action="/mycloset/{{ this._id }}/edit-outfit">
-                <button type="submit">Edit</button>
-              </form>
-              <form
-                action="/mycommunity/{{ this._id }}/add-outfit"
-                method="post"
-              >
+             <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/add-outfit" method="post">
                 <button type="submit">Add</button>
               </form>
             </div>
@@ -155,24 +142,17 @@
             role="tabpanel"
             aria-labelledby="pills-collections-tab"
           >
-            <form action="/mycloset/add-collection">
-              <button type="submit">New collection</button>
-            </form>
-            <h3>My collections</h3>
+            <h3>{{thisUser.name}}'s collections</h3>
             {{#each thisUser.collections}}
             <div>
               <h3>{{ this.name }}</h3>
               <p>{{ this.description }}</p>
-              <form action="/mycloset/{{ this._id }}/edit-collection">
-                <button type="submit">Edit this collection</button>
-              </form>
-              <form action="/mycloset/{{ this._id }}/add-collection">
-                <button type="submit">Add outfits to this collection</button>
+              <form action="/mycommunity/{{ this._id }}/view-collection">
+                <button type="submit">View this collection</button>
               </form>
               <form
                 action="/mycommunity/{{ this._id }}/add-collection"
-                method="post"
-              >
+                method="post">
                 <button type="submit">Add collection</button>
               </form>
             </div>

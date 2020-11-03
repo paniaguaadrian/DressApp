@@ -52,7 +52,7 @@ router.post(
         price,
       });
       await User.findByIdAndUpdate(req.userID, { $push: { items: newItem } });
-      res.render("private/closet/item/create.hbs");
+      res.render("private/closet/item/create.hbs", {successMessage: `${newItem.name} has been added successfully`});
     } catch (error) {
       console.log(error);
     }
@@ -185,16 +185,6 @@ router.get("/:id/edit-collection", async (req, res, next) => {
   const theCollection = await Collection.findById(req.params.id).populate(
     "outfits"
   );
-  console.log("This is the collection " + theCollection);
-  // const theOutfits = theCollection.outfits
-  // const getOutfits = []
-  // for(let i = 0; i < theOutfits.length; i++){
-  //   let outfit = await Outfit.findById(theOutfits[i])
-  //   outfit.collectionID= req.params.id
-  //   getOutfits.push(outfit)
-  // }
-
-  // console.log(`These are my outfits ${getOutfits}`)
   res.render("private/closet/collection/edit.hbs", { theCollection });
 });
 
@@ -211,8 +201,17 @@ router.post("/:id/edit-collection", async (req, res, next) => {
 router.get("/:id/add-collection", withAuth, async (req, res, next) => {
   const thisUser = await User.findById(req.userID).populate("outfits").exec();
   try {
-    await Collection.findByIdAndUpdate({ _id: req.params.id }, {$push:{outfits: outfit}})
-    await Outfit.findByIdAndUpdate({_id: outfit}, {$push:{collections: req.params.id}})
+    const collection = await Collection.findById(req.params.id)
+    res.render(`private/closet/collection/add.hbs`, {thisUser, collection})
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/:id/add-collection", withAuth, async (req, res, next) => {
+  const {outfit} = req.body
+  try {
+    await Collection.findByIdAndUpdate({ _id: req.params.id }, { $push: { outfits: outfit } })
     res.redirect(`/mycloset/${req.params.id}/add-collection`)
   } catch (error) {
     console.log(error);
@@ -255,17 +254,12 @@ router.post("/:id/delete-collection", withAuth, async (req, res, next) => {
   }
 });
 
-router.post(
-  "/:id/delete-outfit-collection",
-  withAuth,
-  async (req, res, next) => {
+router.post("/:id/delete-outfit-collection", withAuth, async (req, res, next) => {
     const _id = req.body.outfitID;
     try {
       const collectionID = req.params.id;
-      const collection = await Collection.findByIdAndUpdate(collectionID, {
-        $pull: { outfits: _id },
-      });
-      res.redirect("/mycloset");
+      await Collection.findByIdAndUpdate(collectionID, {$pull: { outfits: _id }});
+      res.redirect(`/mycloset/${req.params.id}/edit-collection`);
     } catch (err) {
       console.log("Error while deleting the item: ", err);
     }

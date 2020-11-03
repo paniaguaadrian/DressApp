@@ -42,22 +42,24 @@
       {{> top_page_mobile}}
 
       <div id="body">
-       <h1>Community</h1>
-       
-      {{#each allButMe}}
-      <div>
-        <a href="mycommunity/{{this.id}}/closet">
-        <img src="{{this.image}}" alt="" style="width: 100px; border-radius: 50px">
-        <h3>{{this.name}}</h3>
-        <p>{{this.description}}</p>
-        <span>Items: {{this.items.length}}</span>
-        <span>Outfits: {{this.outfits.length}}</span>
-        <span>Collections: {{this.collections.length}}</span>
-        </a>
-      </div>
-      {{/each}}
-     
-      </div>
+          
+                 <h1>{{thisCollection.name}}</h1>
+                <h3>{{thisCollection.description}}</h3>
+                <form
+                action="/mycommunity/{{ thisCollection._id }}/add-collection"
+                method="post">
+                <button type="submit">Add collection</button>
+              </form>
+                {{#each thisCollection.outfits}}
+                 <div>
+                    <h5>{{this.name}}</h5>
+                    <h5>{{this.description}}</h5>
+                    <img src="{{this.imageTop}}" alt="" style="width: 100px;">
+                    <img src="{{this.imageBottom}}" alt="" style="width: 100px;">
+                    <img src="{{this.imageFeet}}" alt="" style="width: 100px;">
+                </div>
+                {{/each}}
+   
 
       {{> menu_mobile}}
     </div>

@@ -9,8 +9,15 @@ const withAuth = require("../../middleware/auth");
 
 router.get("/", withAuth, async (req, res, next) => {
     const allUsers = await User.find()
-    console.log(allUsers)
-    res.render("private/community/index.hbs", {allUsers});
+    const allButMe =[]
+    allUsers.forEach(function(user){
+        if(user.id !== req.userID){
+            allButMe.push(user)
+        }
+    })
+
+    // console.log(allButMe)
+    res.render("private/community/index.hbs", {allButMe});
 });
 
 router.get("/:id/closet", withAuth, async (req, res, next) => {
@@ -22,8 +29,16 @@ router.get("/:id/closet", withAuth, async (req, res, next) => {
     res.render("private/community/closet.hbs", {thisUser});
 });
 
-router.post("/:id/add-item", withAuth, async (req, res, next) => {
-        const item = await Item.findById(req.params.id)
+router.get("/:id/view-collection", withAuth, async (req, res, next) => {
+    const thisCollection = await Collection.findById(req.params.id)
+    .populate('outfits')
+    .exec()
+    res.render("private/community/collection.hbs", {thisCollection});
+});
+
+router.post("/:id/closet/:item/add-item", withAuth, async (req, res, next) => {
+        const user = await User.findById(req.params.id)
+        const item = await Item.findById(req.params.item)
         const name = item.name
         const description = item.description
         const image = item.image
@@ -36,11 +51,12 @@ router.post("/:id/add-item", withAuth, async (req, res, next) => {
         await User.findByIdAndUpdate(req.userID, {$push:{items: copyItem}})
 
         console.log('This is the item I want to add ' + copyItem)
-    res.redirect("/mycommunity");
+    res.redirect(`/mycommunity/${user.id}/closet`);
 });
 
-router.post("/:id/add-outfit", withAuth, async (req, res, next) => {
-    const outfit = await Outfit.findById(req.params.id)
+router.post("/:id/closet/:outfit/add-outfit", withAuth, async (req, res, next) => {
+    const user = await User.findById(req.params.id)
+    const outfit = await Outfit.findById(req.params.outfit)
     const name = outfit.name
     const description = outfit.description
     const imageTop = outfit.imageTop
@@ -52,7 +68,7 @@ router.post("/:id/add-outfit", withAuth, async (req, res, next) => {
     await User.findByIdAndUpdate(req.userID, {$push:{outfits: copyOutfit}})
 
     console.log('This is the item I want to add ' + copyOutfit)
-res.redirect("/mycommunity");
+    res.redirect(`/mycommunity/${user.id}/closet`);
 });
 
 router.post("/:id/add-collection", withAuth, async (req, res, next) => {
@@ -79,7 +95,7 @@ router.post("/:id/add-collection", withAuth, async (req, res, next) => {
     await User.findByIdAndUpdate(req.userID, {$push:{collections: copyCollection}})
 
     console.log('This is the collection I want to add ' + copyCollection)
-    res.redirect("/mycommunity");
+    res.redirect("/mycloset");
 });
 
 module.exports = router;
