@@ -69,7 +69,7 @@ ul {
   background-color: #f3f4f7;
   font-family: "Open Sans", sans-serif;
   width: 300px;
-  margin-top: 10rem;
+  margin-top: 5rem;
   text-align: center;
 }
 
@@ -115,6 +115,15 @@ ul {
 .signup-link {
   padding-left: 0.3rem;
   text-decoration: underline !important;
+}
+
+.error-handle {
+  margin: 2rem 0;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: red;
 }
 
 .container-logo-top {
@@ -184,5 +193,186 @@ ul {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   font-size: 0.9rem;
+}
+
+.profile_title {
+  padding: 0 2rem;
+}
+
+.user-info {
+  margin-top: 3rem;
+  padding: 0 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile_image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+.profile_picture {
+  width: 18rem;
+  border-radius: 50%;
+}
+
+.profile_name {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.description_title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+.profile_description {
+  font-size: 0.8rem;
+}
+
+.user-btn {
+  margin-top: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.logout-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  width: 7rem;
+  height: 2rem;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(255, 0, 0, 0.685);
+  color: white !important;
+}
+
+.logout-btn:hover {
+  background-color: red;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.divider-section {
+  width: 75%;
+}
+
+.user-info-edit {
+  margin-top: 3rem;
+  padding: 0 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.image_edit_profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profile_picture_edit {
+  width: 15rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+}
+
+.change-image {
+  margin-bottom: 1rem;
+}
+
+.user-edit {
+  margin-top: 2rem;
+}
+
+.username_input {
+  width: 20rem;
+  height: 2rem;
+  margin: 0.5rem 0 2rem 0;
+}
+
+.description_input {
+  margin: 0.5rem 0 2rem 0;
+  width: 20rem;
+  height: 7rem;
+}
+
+.email_input {
+  width: 20rem;
+  height: 2rem;
+  margin: 0.5rem 0 2rem 0;
+}
+
+.edit-btn-profile {
+  background-color: teal;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 8rem;
+  height: 2rem;
+  margin-bottom: 2rem;
+}
+
+.edit-btn-profile2 {
+  background-color: teal;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 9rem;
+  height: 2rem;
+}
+
+.user-btn-edit {
+  margin-top: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 /*# sourceMappingURL=style.css.map */

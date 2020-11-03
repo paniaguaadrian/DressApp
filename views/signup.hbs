@@ -24,7 +24,6 @@
       rel="stylesheet"
     />
 
-
     {{!-- Stylesheets css --}}
     <link rel="stylesheet" href="/css/style.css" />
 
@@ -34,7 +33,7 @@
     <div class="container login-container">
       <div class="card">
         <div class="card-content">
-          <h3 class="login-logo-text"></i>DressApp</h3>
+          <h3 class="login-logo-text">DressApp</h3>
           <div class="section">
             <p class="lead">Your closet in your pocket</p>
           </div>
@@ -54,17 +53,23 @@
                 <label class="form-login-label" for="password">Password</label>
                 <input type="password" id="password" name="password" />
               </div>
+
+              <div class="error-handle">
+                {{#if errorMessage}}
+                <p class="error-message">
+                  {{ errorMessage }}
+                </p>
+                {{/if}}
+              </div>
               <div class="form-btns">
-              <button class="login-btn" type="submit">Sign Up</button>
-              <p class="signup-ask">Already have an account?<a class="signup-link" href="/">Login</a></p>
+                <button class="login-btn" type="submit">Sign Up</button>
+                <p class="signup-ask">
+                  Already have an account?<a class="signup-link" href="/"
+                    >Log in</a
+                  >
+                </p>
               </div>
             </form>
-            
-            {{#if errorMessage}}
-            <p class="error-message">
-              {{ errorMessage }}
-            </p>
-            {{/if}}
           </div>
         </div>
       </div>

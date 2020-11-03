@@ -6,24 +6,31 @@
 
         <label for="">Description:</label>
         <input type="text" name="description">
+        
 
+        
+        
         <select name="imageTop" id="">
             {{#each topItems}}
             <option value="{{this.image}}">{{this.name}}</option>
-            {{/each}}
+           {{/each}}
         </select>
-
+        
+        
          <select name="imageBottom" id="">
             {{#each bottomItems}}
             <option value="{{this.image}}">{{this.name}}</option>
-            {{/each}}
+             {{/each}}
         </select>
-
+       
+        
          <select name="imageFeet" id="">
             {{#each feetItems}}
             <option value="{{this.image}}">{{this.name}}</option>
             {{/each}}
         </select>
+        
+      
 
         <button type="submit">ADD</button>
     </form>

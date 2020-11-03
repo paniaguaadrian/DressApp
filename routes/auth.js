@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   if (email === "" || password === "") {
     res.render("login", {
-      errorMessage: "Please enter both, username and password to sign up",
+      errorMessage: "Please enter both, username and password to login",
     });
     return;
   }
@@ -39,7 +39,6 @@ router.post("/login", async (req, res) => {
         expiresIn: "1h",
       });
       res.cookie("token", token, { httpOnly: true });
-      console.log("hola");
       res.status(200).redirect("/mycloset");
     } else {
       res.render("login", { errorMessage: "Incorrect password" });

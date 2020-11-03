@@ -1,0 +1,67 @@
+.profile_title {
+  padding: 0 2rem;
+}
+
+.user-info {
+  margin-top: 3rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile_image {
+  display: flex;
+  text-align: center;
+}
+
+.profile_picture {
+  width: 18rem;
+  border-radius: 50%;
+}
+
+.profile_name {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.description_title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  justify-content: left;
+}
+
+.profile_description {
+  font-size: 0.8rem;
+}
+
+.user-btn {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  //   padding: 0 2rem;
+}
+
+.logout-btn {
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  width: 7rem;
+  height: 2rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 0, 0, 0.685);
+  color: white !important;
+}
+
+.logout-btn:hover {
+  background-color: rgb(255, 0, 0);
+  transition: all 0.3s ease-in-out;
+}
+
+.divider-section {
+  width: 75%;
+}

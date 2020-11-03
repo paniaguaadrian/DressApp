@@ -22,6 +22,7 @@ const withAuth = async (req, res, next) => {
     console.error(error);
     res.locals.isUserLoggedIn = false;
     next(error);
+    res.redirect("/");
   }
 };
 

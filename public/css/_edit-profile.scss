@@ -1,0 +1,67 @@
+.user-info-edit {
+  margin-top: 3rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image_edit_profile {
+  display: flex;
+  justify-content: center;
+}
+
+.profile_picture_edit {
+  width: 15rem;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+}
+.change-image {
+  margin-bottom: 1rem;
+}
+.user-edit {
+  margin-top: 2rem;
+}
+
+.username_input {
+  width: 20rem;
+  height: 2rem;
+  margin: 0.5rem 0 2rem 0;
+}
+
+.description_input {
+  margin: 0.5rem 0 2rem 0;
+  width: 20rem;
+  height: 7rem;
+}
+
+.email_input {
+  width: 20rem;
+  height: 2rem;
+  margin: 0.5rem 0 2rem 0;
+}
+
+.edit-btn-profile {
+  background-color: teal;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 8rem;
+  height: 2rem;
+  margin-bottom: 2rem;
+}
+
+.edit-btn-profile2 {
+  background-color: teal;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 9rem;
+  height: 2rem;
+}
+
+.user-btn-edit {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
