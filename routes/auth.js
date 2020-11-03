@@ -18,7 +18,7 @@ router.get("/login", (req, res, next) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   if (email === "" || password === "") {
-    res.render("auth/login", {
+    res.render("login", {
       errorMessage: "Please enter both, username and password to sign up",
     });
     return;
@@ -27,7 +27,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      res.render("auth/login", {
+      res.render("login", {
         errorMessage: "The email doesn't exist.",
       });
       return;
@@ -52,14 +52,14 @@ router.post("/login", async (req, res) => {
 // * Sign up route ////////////////////////////////////////////////////////////////////
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup", { errorMessage: "" });
+  res.render("signup", { errorMessage: "" });
 });
 
 router.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
 
   if ((email === "") | (password === "") || name === "") {
-    res.render("auth/signup", {
+    res.render("signup", {
       errorMessage: "Enter name, email and password to sign up",
     });
     return;

@@ -45,14 +45,23 @@
         <h1>myProfile</h1>
 
         <div class="user-info">
-          <img class="profile_picture" src="{{ user.image }}" alt="" />
+          <div class="profile-image">
+            <img
+              class="profile_picture"
+              src="{{ user.image }}"
+              alt=""
+              style="width: 100px"
+            />
+          </div>
 
-          <h3>Username:</h3>
-          <h4>{{ user.name }}</h4>
+          <h3>{{ user.name }}</h3>
 
+          <h5>Introducing me...</h5>
           <p>
             {{ user.description }}
           </p>
+          <h5>To contact me...</h5>
+          <p>{{ user.email }}</p>
         </div>
         <div class="user-btn">
           <a href="/myprofile/edit-profile">Edit Profile</a>
