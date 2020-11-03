@@ -9,7 +9,9 @@ const topCloud = require("../../config/cloudinary");
 const withAuth = require("../../middleware/auth");
 const { collection } = require("../../models/User");
 
+
 router.get("/", withAuth, async (req, res, next) => {
+
   if (req.userID) {
     try {
       const userUpdated = await User.findById(req.userID)
@@ -129,7 +131,7 @@ router.get('/:id/edit-item', withAuth, async (req, res, next) => {
       image = imageBefore
     }
 
-    await Item.findByIdAndUpdate(
+    const editedItem = await Item.findByIdAndUpdate(
       { _id: req.params.id },
       { $set: { name, description, image, type, brand, price } }
     );

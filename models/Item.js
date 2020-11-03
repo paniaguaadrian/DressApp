@@ -7,7 +7,8 @@ const itemSchema = new Schema({
     image: String,
     type: String,
     brand: String,
-    price: Number
+    price: Number,
+    likes: [{ type: Schema.Types.ObjectId, ref: "User" }]
 });
 
 // What is this?

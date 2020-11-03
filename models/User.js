@@ -14,6 +14,7 @@ const userSchema = new Schema(
     outfits: [{ type: Schema.Types.ObjectId, ref: "Outfit" }],
     items: [{ type: Schema.Types.ObjectId, ref: "Item" }],
     collections: [{ type: Schema.Types.ObjectId, ref: "Collection" }],
+    following: [{ type: Schema.Types.ObjectId, ref: "User" }]
   },
   { timestamps: true }
 );

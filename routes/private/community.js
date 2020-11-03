@@ -7,6 +7,7 @@ const Collection = require("../../models/Collection");
 const topCloud = require("../../config/cloudinary");
 const withAuth = require("../../middleware/auth");
 
+
 router.get("/", withAuth, async (req, res, next) => {
     const allUsers = await User.find()
     const allButMe =[]
@@ -97,5 +98,10 @@ router.post("/:id/add-collection", withAuth, async (req, res, next) => {
     console.log('This is the collection I want to add ' + copyCollection)
     res.redirect("/mycloset");
 });
+
+router.post("/:id/follow", withAuth, async (req, res, next) => {
+    await User.findByIdAndUpdate(req.userID, {$push:{following: req.params.id}})
+    res.redirect(`/mycommunity/${req.params.id}/closet`)
+})
 
 module.exports = router;

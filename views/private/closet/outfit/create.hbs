@@ -1,5 +1,12 @@
 <div>
     <h2>Add an outfit</h2>
+    {{#if successMessage}}
+    <div class="alert alert-primary" role="alert">
+       
+            {{successMessage}}
+
+    </div>
+   {{/if}}
     <form action="/mycloset/add-outfit" method="post">
         <label for="">Name:</label>
         <input type="text" name="name">

@@ -7,17 +7,17 @@
         <label for="">Description:</label>
         <input type="text" name="description" value="{{item.description}}">
 
-        <img src="{{item.image}}" alt="">
+        <img src="{{item.image}}" alt="" style="width: 100px">
         <input type="hidden" name="imageBefore" value="{{item.image}}">
 
         <label for="">Image:</label>
         <input type="file" name="photo" value="{{item.image}}">
         
-        <input type="radio" name="type" value="top">
+        <input type="radio" name="type" value="top" {{{setChecked 'top' item.type}}}>
         <label for="">Top</label><br>
-        <input type="radio" name="type" value="bottom">
+        <input type="radio" name="type" value="bottom" {{{setChecked 'bottom' item.type}}}>
         <label for="">Bottom</label><br>
-        <input type="radio" name="type" value="feet">
+        <input type="radio" name="type" value="feet" {{{setChecked 'feet' item.type}}}>
         <label for="">Feet</label>
 
         <label for="">Brand:</label>
