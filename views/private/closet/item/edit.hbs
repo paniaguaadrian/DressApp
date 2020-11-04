@@ -1,32 +1,81 @@
-<div>
-    <h2>{{item.name}}</h2>
-    <form action="/mycloset/{{item._id}}/edit-item" method="post" enctype="multipart/form-data">
-        <label for="">Name:</label>
-        <input type="text" name="name" value="{{item.name}}">
+<div class="add-item-container">
+  <h3 class="add-item-title">Edit {{ item.name }}</h3>
+  <hr class="divider-section-app" />
 
-        <label for="">Description:</label>
-        <input type="text" name="description" value="{{item.description}}">
+  <form
+    action="/mycloset/{{ item._id }}/edit-item"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <div class="add-item-form">
+      <label class="add-item-label" for="">Clothes name:</label>
+      <input
+        class="add-item-input"
+        type="text"
+        name="name"
+        value="{{ item.name }}"
+      />
 
-        <img src="{{item.image}}" alt="">
-        <input type="hidden" name="imageBefore" value="{{item.image}}">
+      <label class="add-item-label" for="">Clothes description:</label>
+      <input
+        class="add-item-input"
+        type="text"
+        name="description"
+        value="{{ item.description }}"
+      />
+      <div class="edit-item-image">
+        <h6 class="clothes-image-title">Clothes image:</h6>
+        <img src="{{ item.image }}" alt="" style="width: 100px" />
+        <input type="hidden" name="imageBefore" value="{{ item.image }}" />
+        <div class="edit-item-image-add">
+          <label class="add-item-label" for=""></label>
+          <input
+            class="add-item-input"
+            type="file"
+            name="photo"
+            value="{{ item.image }}"
+          />
+        </div>
+      </div>
+      <div class="add-item-radio">
+        <h6>Type of clothes</h6>
+        <div class="add-item-radio-item">
+          <input type="radio" name="type" value="top" />
+          <label class="add-item-radio-label" for=""
+            >Cover your shoulders</label
+          >
+        </div>
+        <div class="add-item-radio-item">
+          <input type="radio" name="type" value="bottom" />
+          <label class="add-item-radio-label" for="">Cover your legs</label>
+        </div>
+        <div class="add-item-radio-item">
+          <input type="radio" name="type" value="feet" />
+          <label class="add-item-radio-label" for="">Cover your feet</label>
+        </div>
+      </div>
 
-        <label for="">Image:</label>
-        <input type="file" name="photo" value="{{item.image}}">
-        
-        <input type="radio" name="type" value="top">
-        <label for="">Top</label><br>
-        <input type="radio" name="type" value="bottom">
-        <label for="">Bottom</label><br>
-        <input type="radio" name="type" value="feet">
-        <label for="">Feet</label>
+      <label class="add-item-label" for="">Brand:</label>
+      <input
+        class="add-item-input"
+        type="text"
+        name="brand"
+        value="{{ item.brand }}"
+      />
 
-        <label for="">Brand:</label>
-        <input type="text" name="brand" value="{{item.brand}}">
-
-        <label for="">Price:</label>
-        <input type="text" name="price" value="{{item.price}}">
-        
-        <button type="submit">EDIT</button>
-    </form>
-    <button><a href="/mycloset">BACK</a></button>
+      <label class="add-item-label" for="">Price:</label>
+      <input
+        class="add-item-input"
+        type="text"
+        name="price"
+        value="{{ item.price }}"
+      />
+      <div class="user-btn">
+        <button class="edit-btn-item" type="submit">Edit</button>
+        <button class="delete-item-btn">
+          <a href="/mycloset" style="color: white">Back</a>
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

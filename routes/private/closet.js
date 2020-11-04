@@ -159,7 +159,7 @@ router.post(
 
 router.get("/:id/edit-outfit", withAuth, async (req, res, next) => {
   const thisUser = await User.findById(req.userID).populate("items").exec();
-  const outfit = req.params.id;
+  const outfit = await Outfit.findById(req.params.id);
   let topItems = [];
   let bottomItems = [];
   let feetItems = [];

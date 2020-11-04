@@ -1,38 +1,40 @@
-<div>
-    <h2>Add an outfit</h2>
-    <form action="/mycloset/add-outfit" method="post">
-        <label for="">Name:</label>
-        <input type="text" name="name">
+<div class="add-item-container">
+  <h3 class="add-item-title">Add an outfit</h3>
+  <hr class="divider-section-app" />
 
-        <label for="">Description:</label>
-        <input type="text" name="description">
-        
+  <form action="/mycloset/add-outfit" method="post">
+    <div class="add-item-form">
+      <label class="add-item-label" for="">Outfit's name:</label>
+      <input class="add-item-input" type="text" name="name" />
 
-        
-        
-        <select name="imageTop" id="">
-            {{#each topItems}}
-            <option value="{{this.image}}">{{this.name}}</option>
-           {{/each}}
-        </select>
-        
-        
-         <select name="imageBottom" id="">
-            {{#each bottomItems}}
-            <option value="{{this.image}}">{{this.name}}</option>
-             {{/each}}
-        </select>
-       
-        
-         <select name="imageFeet" id="">
-            {{#each feetItems}}
-            <option value="{{this.image}}">{{this.name}}</option>
-            {{/each}}
-        </select>
-        
-      
+      <label class="add-item-label" for="">Outfit's description:</label>
+      <input class="add-item-input" type="text" name="description" />
 
-        <button type="submit">ADD</button>
-    </form>
-    <button><a href="/mycloset">BACK</a></button>
+      <h6 class="select-clothes-title">Select your clothes</h6>
+      <h6 class="select-item-title">Cover your shoulders</h6>
+      <select name="imageTop" id="">
+        {{#each topItems}}
+        <option value="{{ this.image }}">{{ this.name }}</option>
+        {{/each}}
+      </select>
+      <h6 class="select-item-title">Cover your legs</h6>
+      <select name="imageBottom" id="">
+        {{#each bottomItems}}
+        <option value="{{ this.image }}">{{ this.name }}</option>
+        {{/each}}
+      </select>
+      <h6 class="select-item-title">Cover your feet</h6>
+      <select name="imageFeet" id="">
+        {{#each feetItems}}
+        <option value="{{ this.image }}">{{ this.name }}</option>
+        {{/each}}
+      </select>
+      <div class="user-btn">
+        <button class="edit-btn-item" type="submit">Add</button>
+        <button class="delete-item-btn">
+          <a href="/mycloset" style="color: white">Back</a>
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

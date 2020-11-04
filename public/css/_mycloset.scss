@@ -110,6 +110,7 @@
 .add-item-title {
   font-family: $logo-font;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .add-item-form {
@@ -145,4 +146,33 @@ label {
 
 .add-item-radio-label {
   margin-left: 1rem;
+}
+
+// Edit clothes style
+
+.edit-item-image {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.edit-item-image-add {
+  margin-top: 1rem;
+}
+
+.clothes-image-title {
+  margin-bottom: 1rem;
+}
+
+.select-clothes-title {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.select-item-title {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
