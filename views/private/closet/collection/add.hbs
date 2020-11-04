@@ -1,12 +1,19 @@
-<div>
-    <h2>Add outfits to this collection</h2>
+<div class="add-item-container">
+    <h3 class="add-item-title">Add outfits to <br>{{collection.name}}</br></h3>
+    <hr class="divider-section-app" />
     <form action="/mycloset/{{collection._id}}/add-collection" method="post">
+    <div class="add-item-form">
+        <h6 class="clothes-image-title">Select an outfit to add:</h6>
         <select name="outfit" id="">
             {{#each thisUser.outfits}}
             <option name="outfit" value="{{this.id}}">{{this.name}}</option>
             {{/each}}
         </select>
-        <button type="submit">ADD</button>
+        <div class="user-btn">
+        <button class="edit-btn-item" type="submit">Add</button>
+        <button class="delete-item-btn"><a href="/mycloset" style="color: white">Back</a></button>
+        </div>
+    </div>
     </form>
-    <button><a href="/mycloset">BACK</a></button>
+    
 </div>

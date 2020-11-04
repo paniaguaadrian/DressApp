@@ -1,24 +1,48 @@
-<div>
-    <h2>{{theCollection.name}}</h2>
-    <form action="/mycloset/{{theCollection._id}}/edit-collection" method="post">
-        <label for="">Name:</label>
-        <input type="text" name="name" value="{{theCollection.name}}">
+<div class="add-item-container">
+  <h3 class="add-item-title">Edit {{ theCollection.name }}</h3>
+  <hr class="divider-section-app" />
 
-        <label for="">Description:</label>
-        <input type="text" name="description" value="{{theCollection.description}}">
-        <button type="submit">EDIT</button>
-    </form>
-    {{#each theCollection.outfits}}  
-     <form action="/mycloset/{{../theCollection._id}}/delete-outfit-collection" method="post">
-        <h3>{{this.name}}</h3>
-        <input type="hidden" name="outfitID" value="{{this._id}}" >
-            <img src="{{this.imageTop}}" alt="" style="width: 100px;">
-            <img src="{{this.imageBottom}}" alt="" style="width: 100px;">
-            <img src="{{this.imageFeet}}" alt="" style="width: 100px;">
-         
-                <button type="submit">Delete</button>
-       
-        </form>
-    {{/each}}
-    <button><a href="/mycloset">BACK</a></button>
+  <form
+    action="/mycloset/{{ theCollection._id }}/edit-collection"
+    method="post"
+  >
+    <div class="add-item-form">
+      <label for="">Name:</label>
+      <input type="text" name="name" value="{{ theCollection.name }}" />
+
+      <label for="">Description:</label>
+      <input
+        type="text"
+        name="description"
+        value="{{ theCollection.description }}"
+      />
+      <div class="user-btn">
+        <button class="edit-btn-item" type="submit">Edit</button>
+        <button class="delete-item-btn">
+          <a href="/mycloset" style="color: white">Back</a>
+        </button>
+      </div>
+    </div>
+  </form>
+  {{#each theCollection.outfits}}
+  <form
+    action="/mycloset/{{../theCollection._id}}/delete-outfit-collection"
+    method="post"
+  >
+    <div class="add-item-form">
+      <div class="divider-items">
+        <h1 class="outfit-name-editCol">{{ this.name }} Outfit</h1>
+        <input type="hidden" name="outfitID" value="{{ this._id }}" />
+        <img src="{{ this.imageTop }}" alt="" style="width: 100px" />
+        <img src="{{ this.imageBottom }}" alt="" style="width: 100px" />
+        <img src="{{ this.imageFeet }}" alt="" style="width: 100px" />
+        <div class="user-btn">
+          <button class="delete-item-button" type="submit">
+            Delete outfit from collection
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  {{/each}}
 </div>

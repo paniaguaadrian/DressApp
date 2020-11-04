@@ -176,3 +176,23 @@ label {
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
+
+.delete-item-button {
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  width: 15rem;
+  height: 2rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #9e2432c5;
+  color: white !important;
+  margin-bottom: 1rem;
+}
+
+.outfit-name-editCol {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
