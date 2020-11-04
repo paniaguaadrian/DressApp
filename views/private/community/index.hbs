@@ -30,8 +30,8 @@
 
 <h1>My follows</h1>
 
-{{#each me.notification}}
+{{#each notifications}}
 <div>
-  <p>{{this.name}} has uploaded these items:  {{this.items}} </p>
+  <p>{{this.name}} has uploaded a new {{this.type}}:  {{this.item.name}} {{this.outfit.name}} {{this.collections.name}} </p>
 </div>
 {{/each}}

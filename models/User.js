@@ -14,7 +14,7 @@ const userSchema = new Schema(
     collections: [{ type: Schema.Types.ObjectId, ref: "Collection" }],
     following: [{ type: Schema.Types.ObjectId, ref: "User" }],
     followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    notification: [{ name: String, collections: { type: Schema.Types.ObjectId, ref: "Collection" }, items: { type: Schema.Types.ObjectId, ref: "Item" }, outfits: { type: Schema.Types.ObjectId, ref: "Outfit" }, switch: {type: Boolean, default: true}}],
+    notification: [{ type: Schema.Types.ObjectId, ref: "Notification" }],
   },
   { timestamps: true }
 );

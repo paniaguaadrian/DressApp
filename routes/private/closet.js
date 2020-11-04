@@ -5,9 +5,11 @@ const User = require("../../models/User");
 const Item = require("../../models/Item");
 const Outfit = require("../../models/Outfit");
 const Collection = require("../../models/Collection");
+const Notification = require("../../models/Notification");
 const topCloud = require("../../config/cloudinary");
 const withAuth = require("../../middleware/auth");
 const { collection } = require("../../models/User");
+
 
 
 router.get("/", withAuth, async (req, res, next) => {
@@ -18,6 +20,7 @@ router.get("/", withAuth, async (req, res, next) => {
         .populate("items")
         .populate("outfits")
         .populate("collections")
+        .populate('notification')
         .exec();
       res.locals.currentUserInfo = userUpdated;
 
@@ -45,8 +48,11 @@ router.post("/add-item", withAuth,topCloud.single("photo"),async (req, res, next
     const thisUser = await User.findById(req.userID)
 
     for(let i = 0; i < thisUser.followers.length; i++){
-   
-      await User.findByIdAndUpdate(thisUser.followers[i], {$push: {notification: {name: thisUser.name, items:newItem._id}}})
+      const name = thisUser.name
+      const type = 'item'
+      const item = newItem._id
+      const notify = await Notification.create({name, type, item})
+      await User.findByIdAndUpdate(thisUser.followers[i], {$push: {notification: notify}})
     }
     
     res.render("private/closet/item/create.hbs", {successMessage: `${newItem.name} has been added successfully`});
@@ -80,8 +86,13 @@ router.post("/add-outfit", withAuth, async (req, res, next) => {
     const thisUser = await User.findById(req.userID)
 
     for(let i = 0; i < thisUser.followers.length; i++){
-      await User.findByIdAndUpdate(thisUser.followers[i], {$push: {notification: {name: thisUser.name, outfits:newOutfit._id}}})
+      const name = thisUser.name
+      const type = 'outfit'
+      const outfit = newOutfit._id
+      const notify = await Notification.create({name, type, outfit})
+      await User.findByIdAndUpdate(thisUser.followers[i], {$push: {notification: notify}})
     }
+      
     res.redirect('/mycloset/add-outfit')
 });
 
@@ -97,7 +108,11 @@ router.post("/add-collection", withAuth, async (req, res, next) => {
   const thisUser = await User.findById(req.userID)
 
   for(let i = 0; i < thisUser.followers.length; i++){
-    await User.findByIdAndUpdate(thisUser.followers[i], {$push: {notification: {name: thisUser.name, collections:newCollection._id}}})
+      const name = thisUser.name
+      const type = 'collection'
+      const collections = newCollection._id
+      const notify = await Notification.create({name, type, collections})
+      await User.findByIdAndUpdate(thisUser.followers[i], {$push: {notification: notify}})
   }
 
   res.redirect('/mycloset/add-collection')

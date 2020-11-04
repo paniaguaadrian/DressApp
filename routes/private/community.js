@@ -4,8 +4,8 @@ const User = require("../../models/User");
 const Item = require("../../models/Item");
 const Outfit = require("../../models/Outfit");
 const Collection = require("../../models/Collection");
+const Notification = require("../../models/Notification");
 const withAuth = require("../../middleware/auth");
-let alreadyLiked;
 
 router.get("/", withAuth, async (req, res, next) => {
     const allUsers = await User.find()
@@ -24,11 +24,22 @@ router.get("/", withAuth, async (req, res, next) => {
     .populate('items')
     .exec()
 
-    const notification = me.items
+    const notes = me.notification
+    
+    const notifications = []
 
-    console.log(notification, ' these are the items I want to notify')
+    for(let i = 0; i < notes.length; i++){
+
+        const notice = await Notification.findById(notes[i]._id)
+        .populate('item')
+        .populate('outfit')
+        .populate('collections')
+        notifications.push(notice)
+    }
+
+    console.log(me.notification, ' these are the items I want to notify')
    
-    res.render("private/community/index.hbs", {allButMe, me });
+    res.render("private/community/index.hbs", {allButMe, me, notifications});
 });
 
 router.get("/:id/closet", withAuth, async (req, res, next) => {
