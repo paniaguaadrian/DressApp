@@ -40,17 +40,17 @@
       <div class="add-item-radio">
         <h6>Type of clothes</h6>
         <div class="add-item-radio-item">
-          <input type="radio" name="type" value="top" />
+          <input type="radio" name="type" value="top" {{{setChecked 'top' item.type}}}/>
           <label class="add-item-radio-label" for=""
             >Cover your shoulders</label
           >
         </div>
         <div class="add-item-radio-item">
-          <input type="radio" name="type" value="bottom" />
+          <input type="radio" name="type" value="bottom" {{{setChecked 'bottom' item.type}}}/>
           <label class="add-item-radio-label" for="">Cover your legs</label>
         </div>
         <div class="add-item-radio-item">
-          <input type="radio" name="type" value="feet" />
+          <input type="radio" name="type" value="feet" {{{setChecked 'feet' item.type}}}/>
           <label class="add-item-radio-label" for="">Cover your feet</label>
         </div>
       </div>

@@ -10,6 +10,13 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
+hbs.registerHelper ("setChecked", function (value, currentValue) {
+  if ( value == currentValue ) {
+     return "checked";
+  } else {
+     return "";
+  }
+});
 // * Import Connection from DB
 const connectDB = require("./config/db");
 

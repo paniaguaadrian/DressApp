@@ -1,7 +1,13 @@
 <div class="add-item-container">
   <h3 class="add-item-title">Add an outfit</h3>
   <hr class="divider-section-app" />
+{{#if successMessage}}
+    <div class="alert alert-primary" role="alert">
+       
+            {{successMessage}}
 
+    </div>
+   {{/if}}
   <form action="/mycloset/add-outfit" method="post">
     <div class="add-item-form">
       <label class="add-item-label" for="">Outfit's name:</label>

@@ -5,6 +5,7 @@ const User = require("../../models/User");
 const Item = require("../../models/Item");
 const Outfit = require("../../models/Outfit");
 const Collection = require("../../models/Collection");
+const Notification = require("../../models/Notification");
 const topCloud = require("../../config/cloudinary");
 const withAuth = require("../../middleware/auth");
 const { collection } = require("../../models/User");
@@ -16,6 +17,7 @@ router.get("/", withAuth, async (req, res, next) => {
         .populate("items")
         .populate("outfits")
         .populate("collections")
+        .populate("notification")
         .exec();
       res.locals.currentUserInfo = userUpdated;
 
@@ -42,22 +44,30 @@ router.post(
   async (req, res, next) => {
     const { name, description, type, brand, price } = req.body;
     const image = req.file.url;
-    try {
-      const newItem = await Item.create({
-        name,
-        description,
-        image,
-        type,
-        brand,
-        price,
+    const newItem = await Item.create({
+      name,
+      description,
+      image,
+      type,
+      brand,
+      price,
+    });
+    await User.findByIdAndUpdate(req.userID, { $push: { items: newItem } });
+    const thisUser = await User.findById(req.userID);
+
+    for (let i = 0; i < thisUser.followers.length; i++) {
+      const name = req.userID;
+      const type = "item";
+      const item = newItem._id;
+      const notify = await Notification.create({ name, type, item });
+      await User.findByIdAndUpdate(thisUser.followers[i], {
+        $push: { notification: notify },
       });
-      await User.findByIdAndUpdate(req.userID, { $push: { items: newItem } });
-      res.render("private/closet/item/create.hbs", {
-        successMessage: `${newItem.name} has been added successfully`,
-      });
-    } catch (error) {
-      console.log(error);
     }
+
+    res.render("private/closet/item/create.hbs", {
+      successMessage: `${newItem.name} has been added successfully`,
+    });
   }
 );
 
@@ -76,6 +86,7 @@ router.get("/add-outfit", withAuth, async (req, res, next) => {
       feetItems.push(item);
     }
   });
+
   res.render("private/closet/outfit/create.hbs", {
     topItems,
     bottomItems,
@@ -85,28 +96,27 @@ router.get("/add-outfit", withAuth, async (req, res, next) => {
 
 router.post("/add-outfit", withAuth, async (req, res, next) => {
   const { name, description, imageTop, imageBottom, imageFeet } = req.body;
-  try {
-    console.log(
-      "These are the outfits " +
-        imageTop +
-        " and " +
-        imageBottom +
-        " and " +
-        imageFeet
-    );
-    const newOutfit = await Outfit.create({
-      name,
-      description,
-      imageTop,
-      imageBottom,
-      imageFeet,
-    });
-    await User.findByIdAndUpdate(req.userID, { $push: { outfits: newOutfit } });
+  const newOutfit = await Outfit.create({
+    name,
+    description,
+    imageTop,
+    imageBottom,
+    imageFeet,
+  });
+  await User.findByIdAndUpdate(req.userID, { $push: { outfits: newOutfit } });
+  const thisUser = await User.findById(req.userID);
 
-    res.redirect("/mycloset/add-outfit");
-  } catch (error) {
-    console.log(error);
+  for (let i = 0; i < thisUser.followers.length; i++) {
+    const name = req.userID;
+    const type = "outfit";
+    const outfit = newOutfit._id;
+    const notify = await Notification.create({ name, type, outfit });
+    await User.findByIdAndUpdate(thisUser.followers[i], {
+      $push: { notification: notify },
+    });
   }
+
+  res.redirect("/mycloset/add-outfit");
 });
 
 router.get("/add-collection", withAuth, async (req, res, next) => {
@@ -116,15 +126,23 @@ router.get("/add-collection", withAuth, async (req, res, next) => {
 
 router.post("/add-collection", withAuth, async (req, res, next) => {
   const { name, description } = req.body;
-  try {
-    const newCollection = await Collection.create({ name, description });
-    await User.findByIdAndUpdate(req.userID, {
-      $push: { collections: newCollection },
+  const newCollection = await Collection.create({ name, description });
+  await User.findByIdAndUpdate(req.userID, {
+    $push: { collections: newCollection },
+  });
+  const thisUser = await User.findById(req.userID);
+
+  for (let i = 0; i < thisUser.followers.length; i++) {
+    const name = req.userID;
+    const type = "collection";
+    const collections = newCollection._id;
+    const notify = await Notification.create({ name, type, collections });
+    await User.findByIdAndUpdate(thisUser.followers[i], {
+      $push: { notification: notify },
     });
-    res.redirect("/mycloset/add-collection");
-  } catch (error) {
-    console.log(error);
   }
+
+  res.redirect("/mycloset/add-collection");
 });
 
 router.get("/:id/edit-item", withAuth, async (req, res, next) => {
@@ -149,14 +167,14 @@ router.post(
       image = imageBefore;
     }
 
-    await Item.findByIdAndUpdate(
+    const editedItem = await Item.findByIdAndUpdate(
       { _id: req.params.id },
       { $set: { name, description, image, type, brand, price } }
     );
     res.redirect("/mycloset");
   }
 );
-
+// ! Maybe here is an error
 router.get("/:id/edit-outfit", withAuth, async (req, res, next) => {
   const thisUser = await User.findById(req.userID).populate("items").exec();
   const outfit = await Outfit.findById(req.params.id);
