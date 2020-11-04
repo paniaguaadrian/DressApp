@@ -90,9 +90,9 @@
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
-        <img src="{{ this.imageTop }}" alt="picture" style="width: 100px" />
-        <img src="{{ this.imageBottom }}" alt="picture" style="width: 100px" />
-        <img src="{{ this.imageFeet }}" alt="picture" style="width: 100px" />
+        <img class="clothes-image" src="{{ this.imageTop }}" alt="picture" />
+        <img class="clothes-image" src="{{ this.imageBottom }}" alt="picture" />
+        <img class="clothes-image" src="{{ this.imageFeet }}" alt="picture"/>
         <div class="items-buttons">
           <form action="/mycloset/{{ this._id }}/edit-outfit">
             <button class="edit-btn-item" type="submit">Edit</button>

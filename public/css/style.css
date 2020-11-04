@@ -471,6 +471,10 @@ ul {
   font-family: "Poiret One";
 }
 
+.description-collection {
+  text-align: center;
+}
+
 .clothes-container {
   padding: 0 2rem;
 }
@@ -714,5 +718,14 @@ label {
   font-size: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.add-collection-btn {
+  background-color: #27abca;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 10rem;
+  height: 2rem;
 }
 /*# sourceMappingURL=style.css.map */
