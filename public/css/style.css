@@ -95,7 +95,7 @@ ul {
 }
 
 .login-btn {
-  background-color: teal;
+  background-color: #27abca;
   color: white;
   border: none;
   border-radius: 5px;
@@ -139,6 +139,7 @@ ul {
 .logo {
   font-family: "Poiret One";
   font-size: 2rem;
+  font-weight: 600;
   color: #000000;
   text-align: center;
   padding: 1rem;
@@ -149,7 +150,12 @@ ul {
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: -10px;
+  bottom: -11px;
+}
+
+.menu-icon {
+  color: #27abca;
+  font-size: 1.5rem;
 }
 
 .menu-mobile {
@@ -174,6 +180,7 @@ ul {
 
 .menu-mobile-text {
   font-size: 0.8rem;
+  margin-top: 0.5rem;
 }
 
 .nav {
@@ -198,6 +205,11 @@ ul {
 
 .profile_title {
   padding: 0 2rem;
+}
+
+.profile-tite-span {
+  -webkit-text-decoration: underline solid #27abca;
+          text-decoration: underline solid #27abca;
 }
 
 .user-info {
@@ -225,6 +237,8 @@ ul {
 .profile_picture {
   width: 13rem;
   border-radius: 50%;
+  -webkit-box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
 }
 
 .profile_name {
@@ -274,18 +288,14 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: rgba(255, 0, 0, 0.685);
+  background-color: #9e2432c5;
   color: white !important;
-}
-
-.logout-btn:hover {
-  background-color: red;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 
 .divider-section {
   width: 75%;
+  border: none;
+  border-bottom: 0.5px solid #27abca;
 }
 
 .user-info-edit {
@@ -345,7 +355,7 @@ ul {
 }
 
 .edit-btn-profile {
-  background-color: teal;
+  background-color: #27abca;
   color: white !important;
   border: none;
   border-radius: 5px;
@@ -355,7 +365,7 @@ ul {
 }
 
 .edit-btn-profile2 {
-  background-color: teal;
+  background-color: #27abca;
   color: white !important;
   border: none;
   border-radius: 5px;
@@ -380,11 +390,16 @@ ul {
 .community_users_list {
   margin: 1rem;
   padding: 1rem 1rem 1rem 1rem;
-  border: 2px solid teal;
+  border: 1.5px solid #27abca;
   border-radius: 10px;
   background-color: #f3f4f7;
   -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+.profile-tite-span {
+  -webkit-text-decoration: underline solid #27abca;
+          text-decoration: underline solid #27abca;
 }
 
 .name_image {
@@ -411,7 +426,6 @@ ul {
 .user_name {
   font-size: 1.2rem;
   font-weight: 400;
-  border-bottom: 2px solid teal;
 }
 
 .user_description {
@@ -455,5 +469,127 @@ ul {
 
 .page-title {
   font-family: "Poiret One";
+}
+
+.clothes-container {
+  padding: 0 2rem;
+}
+
+.add-button-profile {
+  background-color: #27abca;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 8rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.add-collection-profile {
+  background-color: #27abca;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 9rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.divider-section-app {
+  width: 75%;
+  border: none;
+  border-bottom: 0.5px solid #27abca;
+}
+
+.each-item {
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.divider-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 2rem;
+  border: 1.5px solid #27abca;
+  background-color: #f3f4f7;
+  border-radius: 10px;
+  background-color: #f3f4f7;
+  -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+.items-buttons {
+  margin: 1rem 0;
+  padding: 1rem 1rem 1rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.item-name {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.edit-btn-item {
+  background-color: #27abca;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 5rem;
+  height: 2rem;
+}
+
+.add-to-collection {
+  background-color: #27abca;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 15rem;
+  height: 2rem;
+  margin-top: 1rem;
+}
+
+.delete-item-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  width: 5rem;
+  height: 2rem;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #9e2432c5;
+  color: white !important;
+  margin-left: 1rem;
+}
+
+.clothes-image {
+  width: 150px;
 }
 /*# sourceMappingURL=style.css.map */

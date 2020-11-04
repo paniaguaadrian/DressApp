@@ -3,7 +3,12 @@
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: -10px;
+  bottom: -11px;
+}
+
+.menu-icon {
+  color: $t-color;
+  font-size: 1.5rem;
 }
 .menu-mobile {
   background-color: $bg-color;
@@ -20,4 +25,5 @@
 
 .menu-mobile-text {
   font-size: 0.8rem;
+  margin-top: 0.5rem;
 }

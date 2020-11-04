@@ -1,12 +1,16 @@
 .community_users_list {
   margin: 1rem;
   padding: 1rem 1rem 1rem 1rem;
-  border: 2px solid teal;
+  border: 1.5px solid $t-color;
   border-radius: 10px;
   background-color: $bg-color;
   -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+.profile-tite-span {
+  text-decoration: underline solid $t-color;
 }
 
 .name_image {
@@ -21,14 +25,13 @@
 .image_community {
   width: 3rem;
   border-radius: 50%;
-  //   border: 1px solid teal;
+  //   border: 1px solid $t-color;
   margin-right: 1rem;
 }
 
 .user_name {
   font-size: 1.2rem;
   font-weight: 400;
-  border-bottom: 2px solid teal;
 }
 
 .user_description {

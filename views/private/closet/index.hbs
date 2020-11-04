@@ -1,138 +1,146 @@
-<h1>myCloset</h1>
+<div class="profile_title">
+  <h1 class="page-title">my<span class="profile-tite-span">Closet</span></h1>
+</div>
 
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <a
-              class="pill-navbar"
-              id="pills-clothes-tab"
-              data-toggle="pill"
-              href="#pills-clothes"
-              role="tab"
-              aria-controls="pills-clothes"
-              aria-selected="false"
-              >Clothes</a
-            >
-          </li>
-          <li class="nav-item" role="presentation">
-            <a
-              class="pill-navbar"
-              id="pills-collections-tab"
-              data-toggle="pill"
-              href="#pills-outfits"
-              role="tab"
-              aria-controls="pills-outfits"
-              aria-selected="false"
-              >Outfits</a
-            >
-          </li>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a
+      class="pill-navbar"
+      id="pills-clothes-tab"
+      data-toggle="pill"
+      href="#pills-clothes"
+      role="tab"
+      aria-controls="pills-clothes"
+      aria-selected="false"
+      >Clothes</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="pill-navbar"
+      id="pills-collections-tab"
+      data-toggle="pill"
+      href="#pills-outfits"
+      role="tab"
+      aria-controls="pills-outfits"
+      aria-selected="false"
+      >Outfits</a
+    >
+  </li>
 
-          <li class="nav-item" role="presentation">
-            <a
-              class="pill-navbar"
-              id="pills-collections-tab"
-              data-toggle="pill"
-              href="#pills-collections"
-              role="tab"
-              aria-controls="pills-collections"
-              aria-selected="true"
-              >Collections</a
-            >
-          </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-          <div
-            class="tab-pane fade show active"
-            id="pills-clothes"
-            role="tabpanel"
-            aria-labelledby="pills-clothes-tab"
-          >
-            <form action="/mycloset/add-item">
-              <button type="submit">New clothes</button>
+  <li class="nav-item" role="presentation">
+    <a
+      class="pill-navbar"
+      id="pills-collections-tab"
+      data-toggle="pill"
+      href="#pills-collections"
+      role="tab"
+      aria-controls="pills-collections"
+      aria-selected="true"
+      >Collections</a
+    >
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="pills-clothes"
+    role="tabpanel"
+    aria-labelledby="pills-clothes-tab"
+  >
+    <div class="clothes-container">
+      <form action="/mycloset/add-item">
+        <button class="add-button-profile" type="submit">+ Add clothes</button>
+      </form>
+      <hr class="divider-section-app" />
+      <h3 class="page-title">My clothes</h3>
+      <div class="each-item">
+        {{#each userUpdated.items}}
+        <div class="divider-items">
+          <h1 class="item-name">{{ this.name }}</h1>
+          <p>{{ this.description }}</p>
+          <img class="clothes-image" src="{{ this.image }}" alt="picture" />
+          <div class="items-buttons">
+            <form action="/mycloset/{{ this._id }}/edit-item">
+              <button class="edit-btn-item" type="submit">Edit</button>
             </form>
-            <h3>My clothes</h3>
-            {{#each userUpdated.items}}
-            <div>
-              <a href="{{ this._id }}">{{ this.name }}</a>
-              <p>{{ this.description }}</p>
-              <img src="{{ this.image }}" alt="picture" style="width: 100px" />
-              <form action="/mycloset/{{ this._id }}/edit-item">
-                <button type="submit">Edit</button>
-              </form>
-              <form action="/mycloset/{{ this._id }}/delete-item" method="post">
-                <button type="submit">Delete</button>
-              </form>
-            </div>
-            {{/each}}
-          </div>
-          <div
-            class="tab-pane fade"
-            id="pills-outfits"
-            role="tabpanel"
-            aria-labelledby="pills-outfits-tab"
-          >
-            <form action="/mycloset/add-outfit">
-              <button type="submit">New outfit</button>
+            <form action="/mycloset/{{ this._id }}/delete-item" method="post">
+              <button class="delete-item-btn" type="submit">Delete</button>
             </form>
-            <h3>My outfits</h3>
-            {{#each userUpdated.outfits}}
-            <div>
-              <a href="{{ this._id }}">{{ this.name }}</a>
-              <p>{{ this.description }}</p>
-              <img
-                src="{{ this.imageTop }}"
-                alt="picture"
-                style="width: 100px"
-              />
-              <img
-                src="{{ this.imageBottom }}"
-                alt="picture"
-                style="width: 100px"
-              />
-              <img
-                src="{{ this.imageFeet }}"
-                alt="picture"
-                style="width: 100px"
-              />
-              <form action="/mycloset/{{ this._id }}/edit-outfit">
-                <button type="submit">Edit</button>
-              </form>
-              <form
-                action="/mycloset/{{ this._id }}/delete-outfit"
-                method="post"
-              >
-                <button type="submit">Delete</button>
-              </form>
-            </div>
-            {{/each}}
-          </div>
-          <div
-            class="tab-pane fade"
-            id="pills-collections"
-            role="tabpanel"
-            aria-labelledby="pills-collections-tab"
-          >
-            <form action="/mycloset/add-collection">
-              <button type="submit">New collection</button>
-            </form>
-            <h3>My collections</h3>
-            {{#each userUpdated.collections}}
-            <div>
-              <h3>{{ this.name }}</h3>
-              <p>{{ this.description }}</p>
-              <form action="/mycloset/{{ this._id }}/edit-collection">
-                <button type="submit">Edit this collection</button>
-              </form>
-              <form action="/mycloset/{{ this._id }}/add-collection">
-                <button type="submit">Add outfits to this collection</button>
-              </form>
-              <form
-                action="/mycloset/{{ this._id }}/delete-collection"
-                method="post"
-              >
-                <button type="submit">Delete collection</button>
-              </form>
-            </div>
-            {{/each}}
           </div>
         </div>
-
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-outfits"
+    role="tabpanel"
+    aria-labelledby="pills-outfits-tab"
+  >
+    <div class="clothes-container">
+      <form action="/mycloset/add-outfit">
+        <button class="add-button-profile" type="submit">+ Add outfit</button>
+      </form>
+      <hr class="divider-section-app" />
+      <h3 class="page-title">My outfits</h3>
+      <div class="each-item"></div>
+      {{#each userUpdated.outfits}}
+      <div class="divider-items">
+        <h1 class="item-name">{{ this.name }}</h1>
+        <p>{{ this.description }}</p>
+        <img src="{{ this.imageTop }}" alt="picture" style="width: 100px" />
+        <img src="{{ this.imageBottom }}" alt="picture" style="width: 100px" />
+        <img src="{{ this.imageFeet }}" alt="picture" style="width: 100px" />
+        <div class="items-buttons">
+          <form action="/mycloset/{{ this._id }}/edit-outfit">
+            <button class="edit-btn-item" type="submit">Edit</button>
+          </form>
+          <form action="/mycloset/{{ this._id }}/delete-outfit" method="post">
+            <button class="delete-item-btn" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-collections"
+    role="tabpanel"
+    aria-labelledby="pills-collections-tab"
+  >
+    <div class="clothes-container">
+      <form action="/mycloset/add-collection">
+        <button class="add-collection-profile" type="submit">
+          + Add collection
+        </button>
+      </form>
+      <hr class="divider-section-app" />
+      <h3 class="page-title">My collections</h3>
+      {{#each userUpdated.collections}}
+      <div class="divider-items">
+        <h1 class="item-name">{{ this.name }}</h1>
+        <p>{{ this.description }}</p>
+        <form action="/mycloset/{{ this._id }}/add-collection">
+          <button class="add-to-collection" type="submit">
+            Add outfits to this collection
+          </button>
+        </form>
+        <div class="items-buttons">
+          <form action="/mycloset/{{ this._id }}/edit-collection">
+            <button class="edit-btn-item" type="submit">Edit</button>
+          </form>
+          <form
+            action="/mycloset/{{ this._id }}/delete-collection"
+            method="post"
+          >
+            <button class="delete-item-btn" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

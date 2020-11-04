@@ -1,0 +1,99 @@
+.clothes-container {
+  padding: 0 2rem;
+}
+
+.add-button-profile {
+  background-color: $t-color;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 8rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.add-collection-profile {
+  background-color: $t-color;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 9rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.divider-section-app {
+  width: 75%;
+  border: none;
+  border-bottom: 0.5px solid $t-color;
+}
+
+.each-item {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.divider-items {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-top: 2rem;
+  border: 1.5px solid $t-color;
+  background-color: $bg-color;
+  border-radius: 10px;
+  background-color: $bg-color;
+  -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+.items-buttons {
+  margin: 1rem 0;
+  padding: 1rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.item-name {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.edit-btn-item {
+  background-color: $t-color;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 5rem;
+  height: 2rem;
+}
+
+.add-to-collection {
+  background-color: $t-color;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 15rem;
+  height: 2rem;
+  margin-top: 1rem;
+}
+
+.delete-item-btn {
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  width: 5rem;
+  height: 2rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #9e2432c5;
+  color: white !important;
+  margin-left: 1rem;
+}
+
+.clothes-image {
+  width: 150px;
+}
