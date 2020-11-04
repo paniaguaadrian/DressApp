@@ -8,7 +8,6 @@ const outfitSchema = new Schema({
     imageBottom: String, 
     imageFeet: String,
     likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    hasLikes: false
 });
 
 // What is this?

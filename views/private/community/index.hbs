@@ -17,8 +17,21 @@
 
 {{#each me.following}}
 <div>
-  <p>{{this.name}} has uploaded {{this.items.length}} items.</p>
-  <p>{{this.name}} has uploaded {{this.outfits.length}} outfits.</p>
-  <p>{{this.name}} has uploaded {{this.collections.length}} collections.</p>
+  <a href="mycommunity/{{this.id}}/closet">
+    <img src="{{this.image}}" alt="" style="width: 100px; border-radius: 50px">
+    <h3>{{this.name}}</h3>
+    <p>{{this.description}}</p>
+    <span>Items: {{this.items.length}}</span>
+    <span>Outfits: {{this.outfits.length}}</span>
+    <span>Collections: {{this.collections.length}}</span>
+  </a>
+</div>
+{{/each}}
+
+<h1>My follows</h1>
+
+{{#each me.notification}}
+<div>
+  <p>{{this.name}} has uploaded these items:  {{this.items}} </p>
 </div>
 {{/each}}

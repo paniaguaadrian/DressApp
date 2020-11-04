@@ -5,10 +5,12 @@ const Item = require("../../models/Item");
 const Outfit = require("../../models/Outfit");
 const Collection = require("../../models/Collection");
 const withAuth = require("../../middleware/auth");
-
+let alreadyLiked;
 
 router.get("/", withAuth, async (req, res, next) => {
     const allUsers = await User.find()
+    .populate('items')
+    .exec()
     const allButMe =[]
     allUsers.forEach(function(user){
         if(user.id !== req.userID){
@@ -18,9 +20,15 @@ router.get("/", withAuth, async (req, res, next) => {
 
     const me = await User.findById(req.userID)
     .populate('following')
+    .populate('notification')
+    .populate('items')
     .exec()
 
-    res.render("private/community/index.hbs", {allButMe, me});
+    const notification = me.items
+
+    console.log(notification, ' these are the items I want to notify')
+   
+    res.render("private/community/index.hbs", {allButMe, me });
 });
 
 router.get("/:id/closet", withAuth, async (req, res, next) => {
@@ -29,6 +37,7 @@ router.get("/:id/closet", withAuth, async (req, res, next) => {
     .populate('outfits')
     .populate('collections')
     .exec()
+
     res.render("private/community/closet.hbs", {thisUser});
 });
 
@@ -102,23 +111,47 @@ router.post("/:id/add-collection", withAuth, async (req, res, next) => {
 });
 
 router.post("/:id/follow", withAuth, async (req, res, next) => {
-    await User.findByIdAndUpdate(req.userID, {$push:{following: req.params.id}})
+    const theUser = await User.findById(req.userID)
+    const follower = theUser.following.filter(data => data == req.params.id)
+
+    if(follower.includes(req.params.id)){
+        await User.findByIdAndUpdate(req.userID, {$pull:{following: req.params.id}})
+        await User.findByIdAndUpdate(req.params.id, {$pull:{followers: req.userID}})
+        res.redirect(`/mycommunity`)
+    } else {
+        await User.findByIdAndUpdate(req.userID, {$push:{following: req.params.id}})
+        await User.findByIdAndUpdate(req.params.id, {$push:{followers: req.userID}})
+        res.redirect(`/mycommunity`)
+    }
+
+    //comprobar que se sube el ID en followers (luis). Hay que hacer cuando suba un outfit, traer los followers, map y push de la notificación
     res.redirect(`/mycommunity/${req.params.id}/closet`)
 })
 
 router.post("/:id/closet/:item/like-item", withAuth, async (req, res, next) => {
-    const awesomeItem = await Item.findByIdAndUpdate(req.params.item, {$push:{likes: req.userID, hasLikes: true}})
+    const awesomeItem = await Item.findByIdAndUpdate(req.params.item, {$push:{likes: req.userID}})
     res.redirect(`/mycommunity/${req.params.id}/closet`)
 })
 
 router.post("/:id/closet/:outfit/like-outfit", withAuth, async (req, res, next) => {
-    const awesomeOutfit = await Outfit.findByIdAndUpdate(req.params.outfit, {$push:{likes: req.userID, hasLikes: true}})
+    const awesomeOutfit = await Outfit.findByIdAndUpdate(req.params.outfit, {$push:{likes: req.userID}})
     res.redirect(`/mycommunity/${req.params.id}/closet`)
 })
 
 router.post("/:id/closet/:collection/like-collection", withAuth, async (req, res, next) => {
-    const awesomeCollection = await Collection.findByIdAndUpdate(req.params.collection, {$push:{likes: req.userID , hasLikes: true}})
-    res.redirect(`/mycommunity/${req.params.id}/closet`)
+    const theCollection = await Collection.findById(req.params.collection)
+    const like = theCollection.likes.filter(data => data == req.userID)
+    console.log(req.userID, ' user ID' , like , ' like')
+    if(like.includes(req.userID)){
+        console.log('Estoy entrando en el pull de like')
+        await Collection.findByIdAndUpdate(req.params.collection, {$pull:{likes: req.userID}})
+        res.redirect(`/mycommunity/${req.params.id}/closet`)
+    }else {
+        console.log('Estoy entrando en el push de like')
+        await Collection.findByIdAndUpdate(req.params.collection, {$push:{likes: req.userID}})
+        res.redirect(`/mycommunity/${req.params.id}/closet`)
+    }
+    
 })
 
 module.exports = router;
