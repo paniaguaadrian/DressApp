@@ -172,7 +172,7 @@ router.post("/:id/follow", withAuth, async (req, res, next) => {
   }
 
   //comprobar que se sube el ID en followers (luis). Hay que hacer cuando suba un outfit, traer los followers, map y push de la notificación
-  res.redirect(`/mycommunity/${req.params.id}/closet`);
+  res.redirect("/mycommunity");
 });
 
 router.post("/:id/closet/:item/like-item", withAuth, async (req, res, next) => {
