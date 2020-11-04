@@ -1,3 +1,5 @@
+// General style for navigation app (clothes, outfits, collections)
+
 .clothes-container {
   padding: 0 2rem;
 }
@@ -96,4 +98,51 @@
 
 .clothes-image {
   width: 150px;
+}
+
+// Add clothes style
+
+.add-item-container {
+  padding: 1rem;
+  font-family: $body-font;
+}
+
+.add-item-title {
+  font-family: $logo-font;
+  margin-bottom: 2rem;
+}
+
+.add-item-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-item-radio {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0 0.5rem 0;
+  justify-content: space-evenly;
+}
+
+.add-item-radio-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+label {
+  margin: 0;
+}
+
+.add-item-label {
+  margin-bottom: 0.5rem;
+}
+
+.add-item-input {
+  margin-bottom: 0.5rem;
+}
+
+.add-item-radio-label {
+  margin-left: 1rem;
 }
