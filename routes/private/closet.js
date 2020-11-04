@@ -48,7 +48,7 @@ router.post("/add-item", withAuth,topCloud.single("photo"),async (req, res, next
     const thisUser = await User.findById(req.userID)
 
     for(let i = 0; i < thisUser.followers.length; i++){
-      const name = thisUser.name
+      const name = req.userID
       const type = 'item'
       const item = newItem._id
       const notify = await Notification.create({name, type, item})
@@ -86,7 +86,7 @@ router.post("/add-outfit", withAuth, async (req, res, next) => {
     const thisUser = await User.findById(req.userID)
 
     for(let i = 0; i < thisUser.followers.length; i++){
-      const name = thisUser.name
+      const name = req.userID
       const type = 'outfit'
       const outfit = newOutfit._id
       const notify = await Notification.create({name, type, outfit})
@@ -108,7 +108,7 @@ router.post("/add-collection", withAuth, async (req, res, next) => {
   const thisUser = await User.findById(req.userID)
 
   for(let i = 0; i < thisUser.followers.length; i++){
-      const name = thisUser.name
+      const name = req.userID
       const type = 'collection'
       const collections = newCollection._id
       const notify = await Notification.create({name, type, collections})

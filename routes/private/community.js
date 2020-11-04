@@ -31,6 +31,7 @@ router.get("/", withAuth, async (req, res, next) => {
     for(let i = 0; i < notes.length; i++){
 
         const notice = await Notification.findById(notes[i]._id)
+        .populate('name')
         .populate('item')
         .populate('outfit')
         .populate('collections')
@@ -163,6 +164,14 @@ router.post("/:id/closet/:collection/like-collection", withAuth, async (req, res
         res.redirect(`/mycommunity/${req.params.id}/closet`)
     }
     
+})
+
+router.post("/:id/delete-notification", withAuth, async (req, res, next) => {
+    const tiredNotif = await Notification.findById(req.params.id)
+    console.log(tiredNotif, 'this is the notification I want to eliminate')
+    await User.update({ _id: req.userID }, { $pull: { notification: tiredNotif._id } });
+    await Notification.findByIdAndRemove(tiredNotif)
+    res.redirect(`/mycommunity/${req.params.id}/closet`)
 })
 
 module.exports = router;

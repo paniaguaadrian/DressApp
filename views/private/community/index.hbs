@@ -28,10 +28,14 @@
 </div>
 {{/each}}
 
-<h1>My follows</h1>
+<h1>My feed</h1>
 
 {{#each notifications}}
 <div>
-  <p>{{this.name}} has uploaded a new {{this.type}}:  {{this.item.name}} {{this.outfit.name}} {{this.collections.name}} </p>
+  <img src="{{this.name.image}}" alt="" style="width: 50px;">
+  <p>{{this.name.name}} has uploaded a new {{this.type}}:  {{this.item.name}} {{this.outfit.name}} {{this.collections.name}} </p>
+   <form action="/mycommunity/{{ this._id }}/delete-notification" method="post">
+        <button type="submit">Delete</button>
+   </form>
 </div>
 {{/each}}
