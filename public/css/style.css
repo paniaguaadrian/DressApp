@@ -65,6 +65,18 @@ ul {
   padding-bottom: 120px;
 }
 
+@media (max-width: 63.9375em) {
+  .hide-for-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 64em) {
+  .hide-for-desktop {
+    display: none;
+  }
+}
+
 .login-container {
   background-color: #f3f4f7;
   font-family: "Open Sans", sans-serif;
@@ -397,6 +409,23 @@ ul {
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
 }
 
+.profile_title_comm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
 .profile-tite-span {
   -webkit-text-decoration: underline solid #27abca;
           text-decoration: underline solid #27abca;
@@ -473,6 +502,16 @@ ul {
 
 .description-collection {
   text-align: center;
+}
+
+.follow_button {
+  background-color: #27abca;
+  color: white !important;
+  border: none;
+  border-radius: 5px;
+  width: 5rem;
+  height: 2rem;
+  margin-top: 2rem;
 }
 
 .clothes-container {
