@@ -1,58 +1,142 @@
 <div class="profile_title">
-  <h1 class="page-title">the<span class="profile-tite-span">Community</span></h1>
+  <h1 class="page-title">
+    welcome to the DressApp <span class="profile-tite-span">Community</span>
+  </h1>
 </div>
 
-{{#each allButMe}}
-<div class="community_users_list">
-  <a href="mycommunity/{{ this.id }}/closet">
-    <div class="name_image">
-      <img src="{{ this.image }}" alt="" class="image_community" />
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a
+      class="pill-navbar"
+      id="pills-thecommunity-tab"
+      data-toggle="pill"
+      href="#pills-thecommunity"
+      role="tab"
+      aria-controls="pills-thecommunity"
+      aria-selected="false"
+      >theCommunity</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="pill-navbar"
+      id="pills-collections-tab"
+      data-toggle="pill"
+      href="#pills-mycommunity"
+      role="tab"
+      aria-controls="pills-mycommunity"
+      aria-selected="false"
+      >myCommunity</a
+    >
+  </li>
 
-      <h3 class="user_name">{{ this.name }}</h3>
+  <li class="nav-item" role="presentation">
+    <a
+      class="pill-navbar"
+      id="pills-myfeed-tab"
+      data-toggle="pill"
+      href="#pills-myfeed"
+      role="tab"
+      aria-controls="pills-myfeed"
+      aria-selected="true"
+      >myNotifications</a
+    >
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="pills-thecommunity"
+    role="tabpanel"
+    aria-labelledby="pills-thecommunity-tab"
+  >
+    <div class="clothes-container">
+      <div class="profile_title">
+        <h1 class="page-title">
+          the<span class="profile-tite-span">Community</span>
+        </h1>
+      </div>
+
+      {{#each allButMe}}
+      <div class="community_users_list">
+        <a href="mycommunity/{{ this.id }}/closet">
+          <div class="name_image">
+            <img src="{{ this.image }}" alt="" class="image_community" />
+
+            <h3 class="user_name">{{ this.name }}</h3>
+          </div>
+
+          <i class="user_description">
+            {{#if this.description}}
+            "{{ this.description }}"
+            {{/if}}
+          </i>
+          <p class="user_contact">
+            Contact me: <span class="user_email_comm">{{ this.email }}</span>
+          </p>
+          <hr class="divider-section" />
+          <div class="user_data">
+            <p class="data_item">Items: {{ this.items.length }}</p>
+            <p class="data_item">Outfits: {{ this.outfits.length }}</p>
+            <p class="data_item">Collections: {{ this.collections.length }}</p>
+          </div>
+        </a>
+      </div>
+      {{/each}}
     </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-mycommunity"
+    role="tabpanel"
+    aria-labelledby="pills-outfits-tab"
+  >
+    <div class="clothes-container">
+      <h1>My community</h1>
 
-    <i class="user_description">
-      {{#if this.description}}
-      "{{ this.description }}"
-      {{/if}}
-    </i>
-    <p class="user_contact">
-      Contact me: <span class="user_email_comm">{{ this.email }}</span>
-    </p>
-    <hr class="divider-section" />
-    <div class="user_data">
-      <p class="data_item">Items: {{ this.items.length }}</p>
-      <p class="data_item">Outfits: {{ this.outfits.length }}</p>
-      <p class="data_item">Collections: {{ this.collections.length }}</p>
+      {{#each me.following}}
+      <div>
+        <a href="mycommunity/{{ this.id }}/closet">
+          <img
+            src="{{ this.image }}"
+            alt=""
+            style="width: 100px; border-radius: 50px"
+          />
+          <h3>{{ this.name }}</h3>
+          <p>{{ this.description }}</p>
+          <span>Items: {{ this.items.length }}</span>
+          <span>Outfits: {{ this.outfits.length }}</span>
+          <span>Collections: {{ this.collections.length }}</span>
+        </a>
+      </div>
+      {{/each}}
     </div>
-  </a>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-myfeed"
+    role="tabpanel"
+    aria-labelledby="pills-myfeed-tab"
+  >
+    <div class="clothes-container">
+      <h1>Notifications</h1>
+
+      {{#each notifications}}
+      <div>
+        <img src="{{ this.name.image }}" alt="" style="width: 50px" />
+        <p>
+          {{ this.name.name }} has uploaded a new {{ this.type }}:
+          {{ this.item.name }} {{ this.outfit.name }}
+          {{ this.collections.name }}
+        </p>
+        <form
+          action="/mycommunity/{{ this._id }}/delete-notification"
+          method="post"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </div>
+      {{/each}}
+    </div>
+  </div>
 </div>
-{{/each}}
-
-
-<h1>My follows</h1>
-
-{{#each me.following}}
-<div>
-  <a href="mycommunity/{{this.id}}/closet">
-    <img src="{{this.image}}" alt="" style="width: 100px; border-radius: 50px">
-    <h3>{{this.name}}</h3>
-    <p>{{this.description}}</p>
-    <span>Items: {{this.items.length}}</span>
-    <span>Outfits: {{this.outfits.length}}</span>
-    <span>Collections: {{this.collections.length}}</span>
-  </a>
-</div>
-{{/each}}
-
-<h1>My feed</h1>
-
-{{#each notifications}}
-<div>
-  <img src="{{this.name.image}}" alt="" style="width: 50px;">
-  <p>{{this.name.name}} has uploaded a new {{this.type}}:  {{this.item.name}} {{this.outfit.name}} {{this.collections.name}} </p>
-   <form action="/mycommunity/{{ this._id }}/delete-notification" method="post">
-        <button type="submit">Delete</button>
-   </form>
-</div>
-{{/each}}
