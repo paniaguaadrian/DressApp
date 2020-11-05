@@ -105,7 +105,9 @@
   -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   @include breakpoint-up(large) {
-    
+    margin-top: 2rem;
+    width: 70%;
+    height: 4rem;
   }
 }
 
@@ -118,6 +120,10 @@
 .allnotis-container {
   padding: 0 1rem;
   margin-top: 1rem;
+  @include breakpoint-up(large) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .notification-text {

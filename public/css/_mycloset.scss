@@ -139,6 +139,15 @@
   }
 }
 
+.container-container-notis {
+  @include breakpoint-up(large) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .add-item-container {
   padding: 1rem;
   font-family: $body-font;

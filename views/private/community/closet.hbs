@@ -67,6 +67,7 @@
   <div class="tab-pane fade" id="pills-outfits" role="tabpanel" aria-labelledby="pills-outfits-tab">
     <div class="clothes-container">
       <h3 class="page-title">{{ thisUser.name }}'s outfits</h3>
+      <div class="each-item">
       {{#each thisUser.outfits}}
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
@@ -103,11 +104,13 @@
         </form>
       </div>
       {{/each}}
+      </div>
     </div>
   </div>
   <div class="tab-pane fade" id="pills-collections" role="tabpanel" aria-labelledby="pills-collections-tab">
     <div class="clothes-container">
       <h3 class="page-title">{{ thisUser.name }}'s collections</h3>
+      <div class="each-item">
       {{#each thisUser.collections}}
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
@@ -147,6 +150,7 @@
 
       </div>
       {{/each}}
+      </div>
     </div>
   </div>
 </div>
