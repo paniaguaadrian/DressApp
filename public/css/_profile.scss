@@ -69,3 +69,45 @@
   border: none;
   border-bottom: 0.5px solid $t-color;
 }
+
+.container-notification {
+  margin-top: 1rem;
+  padding: 1rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #27acca41;
+  border-radius: 10px;
+  background-color: #27acca13;
+  -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+.image-notification {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.allnotis-container {
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+.notification-text {
+  margin: 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.delete-notification {
+  border: none;
+  background-color: transparent !important;
+}
+
+.x-delete {
+  color: #27abca;
+}

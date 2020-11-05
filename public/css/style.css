@@ -310,6 +310,56 @@ ul {
   border-bottom: 0.5px solid #27abca;
 }
 
+.container-notification {
+  margin-top: 1rem;
+  padding: 1rem;
+  height: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #27acca41;
+  border-radius: 10px;
+  background-color: #27acca13;
+  -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+.image-notification {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.allnotis-container {
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+.notification-text {
+  margin: 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.delete-notification {
+  border: none;
+  background-color: transparent !important;
+}
+
+.x-delete {
+  color: #27abca;
+}
+
 .user-info-edit {
   margin-top: 3rem;
   padding: 0 2rem;
@@ -335,7 +385,7 @@ ul {
 }
 
 .profile_picture_edit {
-  width: 12rem;
+  width: 8rem;
   border-radius: 50%;
   margin-bottom: 2rem;
 }
@@ -498,6 +548,7 @@ ul {
 
 .page-title {
   font-family: "Poiret One";
+  margin-left: 1rem;
 }
 
 .description-collection {
@@ -514,8 +565,28 @@ ul {
   margin-top: 2rem;
 }
 
+.comm_hero {
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.link_name_noti {
+  color: #27abca;
+  text-decoration: underline;
+}
+
+.comm_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.notification-text-bold {
+  font-weight: bold;
+}
+
 .clothes-container {
-  padding: 0 2rem;
+  padding: 0 0.5rem;
 }
 
 .add-button-profile {
@@ -526,6 +597,7 @@ ul {
   width: 8rem;
   height: 2rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .add-collection-profile {
@@ -536,6 +608,7 @@ ul {
   width: 9rem;
   height: 2rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .divider-section-app {
@@ -567,6 +640,7 @@ ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 2rem 1rem 1rem 1rem;
   margin-top: 2rem;
   border: 1.5px solid #27abca;
   background-color: #f3f4f7;

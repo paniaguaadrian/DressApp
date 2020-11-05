@@ -74,6 +74,7 @@
 
 .page-title {
   font-family: $logo-font;
+  margin-left: 1rem;
 }
 
 .description-collection {
@@ -88,4 +89,24 @@
   width: 5rem;
   height: 2rem;
   margin-top: 2rem;
+}
+
+.comm_hero {
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.link_name_noti {
+  color: $t-color;
+  text-decoration: underline;
+}
+
+.comm_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.notification-text-bold {
+  font-weight: bold;
 }

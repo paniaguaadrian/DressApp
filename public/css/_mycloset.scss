@@ -1,7 +1,7 @@
 // General style for navigation app (clothes, outfits, collections)
 
 .clothes-container {
-  padding: 0 2rem;
+  padding: 0 0.5rem;
 }
 
 .add-button-profile {
@@ -12,6 +12,7 @@
   width: 8rem;
   height: 2rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .add-collection-profile {
@@ -22,6 +23,7 @@
   width: 9rem;
   height: 2rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .divider-section-app {
@@ -41,6 +43,7 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
+  margin: 2rem 1rem 1rem 1rem;
   margin-top: 2rem;
   border: 1.5px solid $t-color;
   background-color: $bg-color;
