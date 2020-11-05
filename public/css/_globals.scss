@@ -63,3 +63,17 @@ ul {
   padding-top: 90px;
   padding-bottom: 120px;
 }
+
+.hide-for-mobile {
+  // hide for mobile and tablets
+  @include breakpoint-down(medium) {
+    display: none;
+  }
+}
+
+.hide-for-desktop {
+  // hide for desktop
+  @include breakpoint-up(large) {
+    display: none;
+  }
+}
