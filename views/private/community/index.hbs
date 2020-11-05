@@ -124,11 +124,19 @@
       {{#each notifications}}
       <div>
         <img src="{{ this.name.image }}" alt="" style="width: 50px" />
+        {{#if this.upload}}
         <p>
           {{ this.name.name }} has uploaded a new {{ this.type }}:
           {{ this.item.name }} {{ this.outfit.name }}
           {{ this.collections.name }}
         </p>
+        {{else}}
+        <p>
+          {{ this.name.name }} has liked your {{ this.type }}:
+          {{ this.item.name }} {{ this.outfit.name }}
+          {{ this.collections.name }}
+        </p>
+        {{/if}}
         <form
           action="/mycommunity/{{ this._id }}/delete-notification"
           method="post"

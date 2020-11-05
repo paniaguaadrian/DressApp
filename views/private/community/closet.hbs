@@ -3,56 +3,27 @@
     {{ thisUser.name }}'s<span class="profile-tite-span"> Closet</span>
   </h1>
   <form action="/mycommunity/{{thisUser._id}}/follow" method="post">
-        <button class="follow_button" type="submit">Follow</button>
-      </form>
+    <button class="follow_button" type="submit">Follow</button>
+  </form>
 </div>
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
-    <a
-      class="pill-navbar"
-      id="pills-clothes-tab"
-      data-toggle="pill"
-      href="#pills-clothes"
-      role="tab"
-      aria-controls="pills-clothes"
-      aria-selected="false"
-      >Clothes</a
-    >
+    <a class="pill-navbar" id="pills-clothes-tab" data-toggle="pill" href="#pills-clothes" role="tab"
+      aria-controls="pills-clothes" aria-selected="false">Clothes</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a
-      class="pill-navbar"
-      id="pills-collections-tab"
-      data-toggle="pill"
-      href="#pills-outfits"
-      role="tab"
-      aria-controls="pills-outfits"
-      aria-selected="false"
-      >Outfits</a
-    >
+    <a class="pill-navbar" id="pills-collections-tab" data-toggle="pill" href="#pills-outfits" role="tab"
+      aria-controls="pills-outfits" aria-selected="false">Outfits</a>
   </li>
 
   <li class="nav-item" role="presentation">
-    <a
-      class="pill-navbar"
-      id="pills-collections-tab"
-      data-toggle="pill"
-      href="#pills-collections"
-      role="tab"
-      aria-controls="pills-collections"
-      aria-selected="true"
-      >Collections</a
-    >
+    <a class="pill-navbar" id="pills-collections-tab" data-toggle="pill" href="#pills-collections" role="tab"
+      aria-controls="pills-collections" aria-selected="true">Collections</a>
   </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
-  <div
-    class="tab-pane fade show active"
-    id="pills-clothes"
-    role="tabpanel"
-    aria-labelledby="pills-clothes-tab"
-  >
+  <div class="tab-pane fade show active" id="pills-clothes" role="tabpanel" aria-labelledby="pills-clothes-tab">
     <div class="clothes-container">
       <h3 class="page-title">{{ thisUser.name }}'s clothes</h3>
       <div class="each-item">
@@ -60,89 +31,100 @@
         <div class="divider-items">
           <h1 class="item-name">{{ this.name }}</h1>
           <p>{{ this.description }}</p>
+          <p>{{this.name}} has {{this.likes.length}} likes</p>
           <img class="clothes-image" src="{{ this.image }}" alt="picture" />
-          <form
-            action="/mycommunity/{{ ../thisUser._id }}/closet/{{
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{
               this._id
-            }}/add-item"
-            method="post"
-          >
+            }}/add-item" method="post">
             <div class="items-buttons">
               <button class="edit-btn-item" type="submit">+ Add</button>
-              
+
             </div>
           </form>
+
+          {{#if this.liked}}
           <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-item" method="post">
-        <button type="submit">Like</button>
-      </form>
+            <button type="submit">You liked this item</button>
+          </form>
+          {{else}}
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-item" method="post">
+            <button type="submit">Like</button>
+          </form>
+          {{/if}}
+
         </div>
         {{/each}}
       </div>
     </div>
   </div>
-  <div
-    class="tab-pane fade"
-    id="pills-outfits"
-    role="tabpanel"
-    aria-labelledby="pills-outfits-tab"
-  >
+  <div class="tab-pane fade" id="pills-outfits" role="tabpanel" aria-labelledby="pills-outfits-tab">
     <div class="clothes-container">
       <h3 class="page-title">{{ thisUser.name }}'s outfits</h3>
       {{#each thisUser.outfits}}
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
+        <p>{{this.name}} has {{this.likes.length}} likes</p>
         <img class="clothes-image" src="{{ this.imageTop }}" alt="picture" />
         <img class="clothes-image" src="{{ this.imageBottom }}" alt="picture" />
         <img class="clothes-image" src="{{ this.imageFeet }}" alt="picture" />
-        <form
-          action="/mycommunity/{{ ../thisUser._id }}/closet/{{
+        <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{
             this._id
-          }}/add-outfit"
-          method="post"
-        >
+          }}/add-outfit" method="post">
           <div class="items-buttons">
             <button class="edit-btn-item" type="submit">+ Add</button>
-            
+
           </div>
+          {{#if this.liked}}
         </form>
         <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-outfit" method="post">
-        <button type="submit">Like</button>
-      </form>
+          <button type="submit">You liked this outfit</button>
+        </form>
+        {{else}}
+        </form>
+        <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-outfit" method="post">
+          <button type="submit">Like</button>
+        </form>
+        {{/if}}
       </div>
       {{/each}}
     </div>
   </div>
-  <div
-    class="tab-pane fade"
-    id="pills-collections"
-    role="tabpanel"
-    aria-labelledby="pills-collections-tab"
-  >
+  <div class="tab-pane fade" id="pills-collections" role="tabpanel" aria-labelledby="pills-collections-tab">
     <div class="clothes-container">
       <h3 class="page-title">{{ thisUser.name }}'s collections</h3>
       {{#each thisUser.collections}}
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
+
+        <p>{{this.name}} has {{this.likes.length}} likes</p>
+
         <form action="/mycommunity/{{ this._id }}/view-collection">
           <button class="add-to-collection" type="submit">
             View this collection
           </button>
         </form>
         <form action="/mycommunity/{{ this._id }}/add-collection" method="post">
-          <button
-            class="add-to-collection"
-            style="margin-bottom: 1rem"
-            type="submit"
-          >
+          <button class="add-to-collection" style="margin-bottom: 1rem" type="submit">
             Add collection
           </button>
+
+          {{#if this.liked}}
         </form>
         <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
-      
-        <button type="submit">Like</button>
-      </form>
+
+          <button type="submit">You liked this collection</button>
+        </form>
+        {{else}}
+        </form>
+        <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
+
+          <button type="submit">Like</button>
+        </form>
+        {{/if}}
+
+
       </div>
       {{/each}}
     </div>
