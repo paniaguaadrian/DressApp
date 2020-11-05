@@ -56,7 +56,7 @@
           DressApp<span class="profile-tite-span">Users</span>
         </h1>
       </div>
-
+<div class="each-item">
       {{#each allButMe}}
       <div class="community_users_list">
         <a href="mycommunity/{{ this.id }}/closet">
@@ -83,6 +83,7 @@
         </a>
       </div>
       {{/each}}
+      </div>
     </div>
   </div>
   <div
@@ -97,7 +98,7 @@
           My<span class="profile-tite-span">community</span>
         </h1>
       </div>
-
+<div class="each-item">
       {{#each me.following}}
       <div class="community_users_list">
         <a href="mycommunity/{{ this.id }}/closet">
@@ -121,6 +122,7 @@
      </a>
     </div>
     {{/each}}
+    </div>
   </div>
   </div>
 

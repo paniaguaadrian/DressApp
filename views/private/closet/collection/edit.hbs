@@ -1,3 +1,4 @@
+<div class="container-container">
 <div class="add-item-container">
   <h3 class="add-item-title">Edit {{ theCollection.name }}</h3>
   <hr class="divider-section-app" />
@@ -24,12 +25,13 @@
       </div>
     </div>
   </form>
+<div class="add-item-form-outfit">
   {{#each theCollection.outfits}}
   <form
     action="/mycloset/{{../theCollection._id}}/delete-outfit-collection"
     method="post"
   >
-    <div class="add-item-form">
+    
       <div class="divider-items">
         <h1 class="outfit-name-editCol">{{ this.name }} Outfit</h1>
         <input type="hidden" name="outfitID" value="{{ this._id }}" />
@@ -42,7 +44,9 @@
           </button>
         </div>
       </div>
-    </div>
+    
   </form>
   {{/each}}
+  </div>
+</div>
 </div>

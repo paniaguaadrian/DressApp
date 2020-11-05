@@ -25,22 +25,39 @@
   -webkit-box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
+
+  @include breakpoint-up(large) {
+    width: 26rem;
+  }
 }
 
 .profile_name {
   font-size: 1.5rem;
   text-align: center;
   margin: 1.5rem 0;
+  @include breakpoint-up(large) {
+    font-size: 3rem;
+  }
 }
 
 .description_title {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   justify-content: left;
+  @include breakpoint-up(large) {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
 }
 
 .profile_description {
   font-size: 0.8rem;
+  @include breakpoint-up(large) {
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 0 2rem;
+    margin: 1rem 10rem 2rem 10rem;
+  }
 }
 
 .user-btn {
@@ -49,6 +66,9 @@
   flex-direction: row;
   justify-content: space-evenly;
   //   padding: 0 2rem;
+  @include breakpoint-up(large) {
+    margin-top: 5rem;
+  }
 }
 
 .logout-btn {
@@ -84,6 +104,9 @@
   -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  @include breakpoint-up(large) {
+    
+  }
 }
 
 .image-notification {

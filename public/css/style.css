@@ -253,10 +253,22 @@ ul {
   box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
 }
 
+@media (min-width: 64em) {
+  .profile_picture {
+    width: 26rem;
+  }
+}
+
 .profile_name {
   font-size: 1.5rem;
   text-align: center;
   margin: 1.5rem 0;
+}
+
+@media (min-width: 64em) {
+  .profile_name {
+    font-size: 3rem;
+  }
 }
 
 .description_title {
@@ -267,8 +279,24 @@ ul {
           justify-content: left;
 }
 
+@media (min-width: 64em) {
+  .description_title {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+}
+
 .profile_description {
   font-size: 0.8rem;
+}
+
+@media (min-width: 64em) {
+  .profile_description {
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 0 2rem;
+    margin: 1rem 10rem 2rem 10rem;
+  }
 }
 
 .user-btn {
@@ -283,6 +311,12 @@ ul {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+}
+
+@media (min-width: 64em) {
+  .user-btn {
+    margin-top: 5rem;
+  }
 }
 
 .logout-btn {
@@ -390,12 +424,30 @@ ul {
   margin-bottom: 2rem;
 }
 
+@media (min-width: 64em) {
+  .profile_picture_edit {
+    width: 16rem;
+  }
+}
+
 .change-image {
   margin-bottom: 1rem;
 }
 
+@media (min-width: 64em) {
+  .change-image {
+    font-size: 1.6rem;
+  }
+}
+
 .user-edit {
   margin-top: 2rem;
+}
+
+@media (min-width: 64em) {
+  .title-edit-profile {
+    font-size: 1.4rem;
+  }
 }
 
 .username_input {
@@ -457,6 +509,12 @@ ul {
   background-color: #f3f4f7;
   -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+@media (min-width: 64em) {
+  .community_users_list {
+    width: 30rem;
+  }
 }
 
 .profile_title_comm {
@@ -625,6 +683,23 @@ ul {
   padding: 0 0.5rem;
 }
 
+@media (min-width: 64em) {
+  .clothes-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 .add-button-profile {
   background-color: #27abca;
   color: white !important;
@@ -664,6 +739,20 @@ ul {
           flex-direction: column;
 }
 
+@media (min-width: 64em) {
+  .each-item {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 .divider-items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -684,6 +773,18 @@ ul {
   background-color: #f3f4f7;
   -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+}
+
+@media (min-width: 64em) {
+  .divider-items {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 23rem;
+  }
 }
 
 .items-buttons {
@@ -746,15 +847,44 @@ ul {
   width: 150px;
 }
 
+@media (min-width: 64em) {
+  .container-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 .add-item-container {
   padding: 1rem;
   font-family: "Open Sans", sans-serif;
+}
+
+@media (min-width: 64em) {
+  .add-item-container {
+    width: 75%;
+  }
+}
+
+@media (min-width: 64em) {
+  .type-of-clothes {
+    font-size: 1.5rem;
+  }
 }
 
 .add-item-title {
   font-family: "Poiret One";
   margin-bottom: 2rem;
   text-align: center;
+}
+
+@media (min-width: 64em) {
+  .add-item-title {
+    font-size: 4rem;
+  }
 }
 
 .add-item-form {
@@ -765,6 +895,39 @@ ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+@media (min-width: 64em) {
+  .add-item-form {
+    font-size: 1.5rem;
+  }
+}
+
+.add-item-form-outfit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media (min-width: 64em) {
+  .add-item-form-outfit {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    margin-top: 3rem;
+  }
 }
 
 .add-item-radio {
@@ -781,6 +944,12 @@ ul {
           justify-content: space-evenly;
 }
 
+@media (min-width: 64em) {
+  .add-item-radio {
+    margin: 1.5rem 0 1.5rem 0;
+  }
+}
+
 .add-item-radio-item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -795,12 +964,24 @@ ul {
   margin: 0.5rem 0;
 }
 
+@media (min-width: 64em) {
+  .add-item-radio-item {
+    margin: 1.5rem 0 1.5rem 0;
+  }
+}
+
 label {
   margin: 0;
 }
 
 .add-item-label {
   margin-bottom: 0.5rem;
+}
+
+@media (min-width: 64em) {
+  .add-item-label {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .add-item-input {
@@ -822,12 +1003,34 @@ label {
   margin-top: 1rem;
 }
 
+@media (min-width: 64em) {
+  .edit-item-image {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+}
+
 .edit-item-image-add {
   margin-top: 1rem;
 }
 
 .clothes-image-title {
   margin-bottom: 1rem;
+}
+
+@media (min-width: 64em) {
+  .clothes-image-title {
+    font-size: 2rem;
+    margin-top: 4rem;
+  }
 }
 
 .select-clothes-title {
@@ -837,10 +1040,24 @@ label {
   font-weight: bold;
 }
 
+@media (min-width: 64em) {
+  .select-clothes-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
 .select-item-title {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
+}
+
+@media (min-width: 64em) {
+  .select-item-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .delete-item-button {

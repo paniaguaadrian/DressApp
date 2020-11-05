@@ -22,7 +22,7 @@
     <input type="file" name="photo" />
 
     <div class="user-edit">
-      <h6>Edit your username</h6>
+      <h6 class="title-edit-profile">Edit your username</h6>
       <input
         class="username_input"
         type="text"
@@ -30,13 +30,13 @@
         value="{{ user.name }}"
       />
 
-      <h6>Edit your description</h6>
+      <h6 class="title-edit-profile">Edit your description</h6>
       <textarea
         name="description"
         maxlength="140"
         value="{{ user.description }}"
         class="description_input">{{user.description}}</textarea>
-      <h6>Edit your email</h6>
+      <h6 class="title-edit-profile">Edit your email</h6>
       <input
         class="email_input"
         type="email"

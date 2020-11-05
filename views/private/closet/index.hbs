@@ -48,12 +48,13 @@
     role="tabpanel"
     aria-labelledby="pills-clothes-tab"
   >
-    <div class="clothes-container">
-      <form action="/mycloset/add-item">
+  <form action="/mycloset/add-item">
         <button class="add-button-profile" type="submit">+ Add clothes</button>
       </form>
       <hr class="divider-section-app" />
       <h3 class="page-title">My clothes</h3>
+    <div class="clothes-container">
+      
       <div class="each-item">
         {{#each userUpdated.items}}
         <div class="divider-items">
@@ -94,12 +95,13 @@
     role="tabpanel"
     aria-labelledby="pills-outfits-tab"
   >
-    <div class="clothes-container">
-      <form action="/mycloset/add-outfit">
+  <form action="/mycloset/add-outfit">
         <button class="add-button-profile" type="submit">+ Add outfit</button>
       </form>
       <hr class="divider-section-app" />
       <h3 class="page-title">My outfits</h3>
+    <div class="clothes-container">
+      
       <div class="each-item"></div>
       {{#each userUpdated.outfits}}
       <div class="divider-items">
@@ -140,14 +142,15 @@
     role="tabpanel"
     aria-labelledby="pills-collections-tab"
   >
-    <div class="clothes-container">
-      <form action="/mycloset/add-collection">
+  <form action="/mycloset/add-collection">
         <button class="add-collection-profile" type="submit">
           + Add collection
         </button>
       </form>
       <hr class="divider-section-app" />
       <h3 class="page-title">My collections</h3>
+    <div class="clothes-container">
+      
       {{#each userUpdated.collections}}
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
