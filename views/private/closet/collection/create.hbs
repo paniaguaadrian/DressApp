@@ -2,7 +2,7 @@
 <div class="add-item-container">
   <h3 class="add-item-title">Create a new Collection</h3>
   <hr class="divider-section-app" />
-<div>
+<div class="container-container-add">
     {{#if successMessage}}
     <div class="alert alert-primary" role="alert">
             {{successMessage}}
@@ -11,7 +11,7 @@
    
 
   <form action="/mycloset/add-collection" method="post">
-    <div class="add-item-form">
+    <div class="add-item-form-collection">
       <label class="add-item-label" for="">Collection's name:</label>
       <input class="add-item-input" type="text" name="name" />
 
@@ -25,5 +25,6 @@
       </div>
     </div>
   </form>
+</div>
 </div>
 </div>

@@ -1,3 +1,4 @@
+<div class="container-container-collectionss">
 <h1 class="add-item-title">{{ thisCollection.name }}</h1>
 <hr class="divider-section-app" />
 <div class="add-item-container">
@@ -10,8 +11,9 @@
       <button class="add-collection-btn" type="submit">+ Add collection</button>
     </div>
   </form>
+  <div class="container-container-3">
   {{#each thisCollection.outfits}}
-  <div class="divider-items">
+  <div class="divider-items-2">
     <h1 class="item-name">{{ this.name }}</h1>
     <h5>{{ this.description }}</h5>
     <img
@@ -29,4 +31,6 @@
     />
   </div>
   {{/each}}
+  </div>
+</div>
 </div>

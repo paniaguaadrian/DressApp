@@ -27,7 +27,7 @@
   box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
 
   @include breakpoint-up(large) {
-    width: 26rem;
+    width: 16rem;
   }
 }
 
@@ -36,7 +36,7 @@
   text-align: center;
   margin: 1.5rem 0;
   @include breakpoint-up(large) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -45,18 +45,19 @@
   margin-bottom: 0.5rem;
   justify-content: left;
   @include breakpoint-up(large) {
-    font-size: 2rem;
-    margin-top: 2rem;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
   }
 }
 
 .profile_description {
   font-size: 0.8rem;
   @include breakpoint-up(large) {
-    font-size: 1.5rem;
+    text-align: center;
+    font-size: 1.2rem;
     font-weight: 100;
-    padding: 0 2rem;
-    margin: 1rem 10rem 2rem 10rem;
+    padding: 0 1rem;
+    margin: 1rem 15rem 1rem 15rem;
   }
 }
 
@@ -67,7 +68,7 @@
   justify-content: space-evenly;
   //   padding: 0 2rem;
   @include breakpoint-up(large) {
-    margin-top: 5rem;
+    margin-top: 2rem;
   }
 }
 
@@ -106,7 +107,7 @@
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   @include breakpoint-up(large) {
     margin-top: 2rem;
-    width: 70%;
+    width: 50%;
     height: 4rem;
   }
 }
@@ -123,6 +124,7 @@
   @include breakpoint-up(large) {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
 }
 
@@ -139,4 +141,12 @@
 
 .x-delete {
   color: #27abca;
+}
+
+.container-container-collectionss {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }

@@ -1,11 +1,11 @@
 <div class="container-container">
 <div class="add-item-container">
-    <h3 class="add-item-title">Add outfits to <br>{{collection.name}}</br></h3>
+    <h3 class="add-item-title">Add outfits to <br>"{{collection.name}}"</br></h3>
     <hr class="divider-section-app" />
     <form action="/mycloset/{{collection._id}}/add-collection" method="post">
     <div class="add-item-form">
         <h6 class="clothes-image-title">Select an outfit to add:</h6>
-        <select name="outfit" id="">
+        <select class="add-item-input" name="outfit" id="">
             {{#each thisUser.outfits}}
             <option name="outfit" value="{{this.id}}">{{this.name}}</option>
             {{/each}}
