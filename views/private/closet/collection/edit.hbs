@@ -1,6 +1,6 @@
 <div class="container-container">
 <div class="add-item-container">
-  <h3 class="add-item-title">Edit {{ theCollection.name }}</h3>
+  <h3 class="add-item-title">Edit "{{ theCollection.name }}"</h3>
   <hr class="divider-section-app" />
 
   <form
@@ -8,14 +8,15 @@
     method="post"
   >
     <div class="add-item-form">
-      <label for="">Name:</label>
-      <input type="text" name="name" value="{{ theCollection.name }}" />
+      <label class="add-item-label" for="">Name:</label>
+      <input class="add-item-input" type="text" name="name" value="{{ theCollection.name }}" />
 
-      <label for="">Description:</label>
+      <label class="add-item-label" for="">Description:</label>
       <input
         type="text"
         name="description"
         value="{{ theCollection.description }}"
+        class="add-item-input" 
       />
       <div class="user-btn">
         <button class="edit-btn-item" type="submit">Edit</button>

@@ -1,10 +1,11 @@
 <div class="container-container">
 <div class="add-item-container">
-  <h3 class="add-item-title">Edit {{ outfit.name }} outfit</h3>
+  <h3 class="add-item-title">Edit "{{ outfit.name }}" outfit</h3>
   <hr class="divider-section-app" />
+  <div class="container-container-add">
   <form action="/mycloset/{{ outfit._id }}/edit-outfit" method="post">
     <div class="add-item-form">
-      <div class="add-item-form">
+      
         <label class="add-item-label" for="">Outfit's name:</label>
         <input
           class="add-item-input"
@@ -12,7 +13,7 @@
           name="name"
           value="{{ outfit.name }}"
         />
-      </div>
+      
       <label class="add-item-label" for="">Outfit's description:</label>
       <input
         class="add-item-input"
@@ -22,19 +23,19 @@
       />
       <h6 class="select-clothes-title">Select your clothes</h6>
       <h6 class="select-item-title">Cover your shoulders</h6>
-      <select name="imageTop" id="">
+      <select class="select-clothes" name="imageTop" id="">
         {{#each topItems}}
         <option value="{{ this.image }}">{{ this.name }}</option>
         {{/each}}
       </select>
       <h6 class="select-item-title">Cover your legs</h6>
-      <select name="imageBottom" id="">
+      <select class="select-clothes" name="imageBottom" id="">
         {{#each bottomItems}}
         <option value="{{ this.image }}">{{ this.name }}</option>
         {{/each}}
       </select>
       <h6 class="select-item-title">Cover your feet</h6>
-      <select name="imageFeet" id="">
+      <select class="select-clothes" name="imageFeet" id="">
         {{#each feetItems}}
         <option value="{{ this.image }}">{{ this.name }}</option>
         {{/each}}
@@ -47,35 +48,7 @@
       </div>
     </div>
   </form>
+  </div>
 </div>
 </div>
-    {{!-- <h2>Edit this outfit</h2>
-    <form action="/mycloset/{{outfit._id}}/edit-outfit" method="post">
-        <label for="">Name:</label>
-        <input type="text" name="name" value="{{outfit.name}}">
-
-        <label for="">Description:</label>
-        <input type="text" name="description" value="{{outfit.description}}">
-
-        <select name="imageTop" id="" value="{{outfit.imageTop}}">
-            {{#each topItems}}
-            <option value="{{this.image}}">{{this.name}}</option>
-            {{/each}}
-        </select>
-
-         <select name="imageBottom" id="" value="{{outfit.imageTop}}">
-            {{#each bottomItems}}
-            <option value="{{this.image}}">{{this.name}}</option>
-            {{/each}}
-        </select>
-
-         <select name="imageFeet" id="" value="{{outfit.imageTop}}">
-            {{#each feetItems}}
-            <option value="{{this.image}}">{{this.name}}</option>
-            {{/each}}
-        </select>
-
-        <button type="submit">ADD</button>
-    </form>
-    <button><a href="/mycloset">BACK</a></button>
-</div> --}}
+    

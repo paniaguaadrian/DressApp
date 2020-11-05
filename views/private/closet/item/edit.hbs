@@ -1,8 +1,8 @@
 <div class="container-container">
 <div class="add-item-container">
-  <h3 class="add-item-title">Edit {{ item.name }}</h3>
+  <h3 class="add-item-title">Edit "{{ item.name }}"</h3>
   <hr class="divider-section-app" />
-
+<div class="container-container-add">
   <form
     action="/mycloset/{{ item._id }}/edit-item"
     method="post"
@@ -79,5 +79,6 @@
       </div>
     </div>
   </form>
+  </div>
 </div>
 </div>
