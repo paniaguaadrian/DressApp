@@ -31,7 +31,7 @@ router.get("/", withAuth, async (req, res, next) => {
       .populate("name")
       .populate("item")
       .populate("outfit")
-      .populate("collections")
+      .populate("collections");
     notifications.push(notice);
   }
 
@@ -46,9 +46,9 @@ router.get("/:id/closet", withAuth, async (req, res, next) => {
     .populate("collections")
     .exec();
 
-    thisUser.items.reverse()
-    thisUser.outfits.reverse()
-    thisUser.collections.reverse()
+  thisUser.items.reverse();
+  thisUser.outfits.reverse();
+  thisUser.collections.reverse();
 
   // const thisUserItems = thisUser.items
   // for(let i = 0; i < thisUserItems.length; i++){
@@ -184,59 +184,88 @@ router.post("/:id/follow", withAuth, async (req, res, next) => {
 
 router.post("/:id/closet/:item/like-item", withAuth, async (req, res, next) => {
   const awesomeItem = await Item.findById(req.params.item);
-  const name = req.userID
-  const type = 'item'
-  const item = awesomeItem._id
-  const upload = false
-  const notify = await Notification.create({ name, type, item, upload});
-  if(awesomeItem.likes.includes(req.userID)){
+  const name = req.userID;
+  const type = "item";
+  const item = awesomeItem._id;
+  const upload = false;
+  const notify = await Notification.create({ name, type, item, upload });
+  if (awesomeItem.likes.includes(req.userID)) {
     await Item.findByIdAndUpdate(req.params.item, {
-      $pull: { likes: req.userID }, liked: false})
+      $pull: { likes: req.userID },
+      liked: false,
+    });
   } else {
     await Item.findByIdAndUpdate(req.params.item, {
-      $push: { likes: req.userID }, liked: true})
-    await User.findByIdAndUpdate(req.params.id, {$push: {notification: notify}})
-  } 
+      $push: { likes: req.userID },
+      liked: true,
+    });
+    await User.findByIdAndUpdate(req.params.id, {
+      $push: { notification: notify },
+    });
+  }
 
   res.redirect(`/mycommunity/${req.params.id}/closet`);
 });
 
-router.post("/:id/closet/:outfit/like-outfit", withAuth, async (req, res, next) => {
+router.post(
+  "/:id/closet/:outfit/like-outfit",
+  withAuth,
+  async (req, res, next) => {
     const awesomeOutfit = await Outfit.findById(req.params.outfit);
-    const name = req.userID
-    const type = 'outfit'
-    const outfit = awesomeOutfit._id
-    const upload = false
-    const notify = await Notification.create({ name, type, outfit, upload});
-    if(awesomeOutfit.likes.includes(req.userID)){
+    const name = req.userID;
+    const type = "outfit";
+    const outfit = awesomeOutfit._id;
+    const upload = false;
+    const notify = await Notification.create({ name, type, outfit, upload });
+    if (awesomeOutfit.likes.includes(req.userID)) {
       await Outfit.findByIdAndUpdate(req.params.outfit, {
-        $pull: { likes: req.userID }, liked: false})
+        $pull: { likes: req.userID },
+        liked: false,
+      });
     } else {
       await Outfit.findByIdAndUpdate(req.params.outfit, {
-        $push: { likes: req.userID }, liked: true})
-        await User.findByIdAndUpdate(req.params.id, {$push: {notification: notify}})
-    } 
+        $push: { likes: req.userID },
+        liked: true,
+      });
+      await User.findByIdAndUpdate(req.params.id, {
+        $push: { notification: notify },
+      });
+    }
     res.redirect(`/mycommunity/${req.params.id}/closet`);
   }
 );
 
-router.post( "/:id/closet/:collection/like-collection", withAuth, async (req, res, next) => {
+router.post(
+  "/:id/closet/:collection/like-collection",
+  withAuth,
+  async (req, res, next) => {
     const theCollection = await Collection.findById(req.params.collection);
-    const name = req.userID
-    const type = 'collection'
-    const collections = theCollection._id
-    const upload = false
-    const notify = await Notification.create({ name, type, collections, upload});
-    if(theCollection.likes.includes(req.userID)){
+    const name = req.userID;
+    const type = "collection";
+    const collections = theCollection._id;
+    const upload = false;
+    const notify = await Notification.create({
+      name,
+      type,
+      collections,
+      upload,
+    });
+    if (theCollection.likes.includes(req.userID)) {
       await Collection.findByIdAndUpdate(req.params.collection, {
-        $pull: { likes: req.userID }, liked: false})
+        $pull: { likes: req.userID },
+        liked: false,
+      });
     } else {
       await Collection.findByIdAndUpdate(req.params.collection, {
-        $push: { likes: req.userID }, liked: true})
-        await User.findByIdAndUpdate(req.params.id, {$push: {notification: notify}})
-    } 
-      res.redirect(`/mycommunity/${req.params.id}/closet`);
+        $push: { likes: req.userID },
+        liked: true,
+      });
+      await User.findByIdAndUpdate(req.params.id, {
+        $push: { notification: notify },
+      });
     }
+    res.redirect(`/mycommunity/${req.params.id}/closet`);
+  }
 );
 
 router.post("/:id/delete-notification", withAuth, async (req, res, next) => {

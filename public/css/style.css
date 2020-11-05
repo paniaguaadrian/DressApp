@@ -585,6 +585,42 @@ ul {
   font-weight: bold;
 }
 
+.num_like {
+  font-size: 1.3rem;
+}
+
+.num_like_red {
+  font-size: 1.3rem;
+  color: red;
+}
+
+.liked-button {
+  color: #e01111;
+  font-size: 1.6rem;
+}
+
+.liked-button-personal {
+  color: #e01111;
+  font-size: 1.6rem;
+  margin-right: 0.5rem;
+}
+
+.liked-button-input {
+  border: none;
+  background-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.like_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 .clothes-container {
   padding: 0 0.5rem;
 }

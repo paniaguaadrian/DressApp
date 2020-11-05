@@ -31,7 +31,25 @@
         <div class="divider-items">
           <h1 class="item-name">{{ this.name }}</h1>
           <p>{{ this.description }}</p>
-          <p>{{this.name}} has {{this.likes.length}} likes</p>
+          <div class="like_container">
+          {{#if this.liked}}
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-item" method="post">
+            <button class="liked-button-input" type="submit"><i class="fas fa-heart liked-button"></i></button>
+            
+          </form>
+          <p class="num_like_red">
+          {{this.likes.length}}
+          </p>
+          {{else}}
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-item" method="post">
+            <button class="liked-button-input" type="submit"><i class="far fa-heart liked-button"></i></button>
+          </form>
+          <p class="num_like">
+          {{this.likes.length}}
+          </p>
+          {{/if}}
+          </div>
+          
           <img class="clothes-image" src="{{ this.image }}" alt="picture" />
           <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{
               this._id
@@ -41,17 +59,6 @@
 
             </div>
           </form>
-
-          {{#if this.liked}}
-          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-item" method="post">
-            <button type="submit">You liked this item</button>
-          </form>
-          {{else}}
-          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-item" method="post">
-            <button type="submit">Like</button>
-          </form>
-          {{/if}}
-
         </div>
         {{/each}}
       </div>
@@ -64,7 +71,25 @@
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
-        <p>{{this.name}} has {{this.likes.length}} likes</p>
+        <div class="like_container">
+          {{#if this.liked}}
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-outfit" method="post">
+            <button class="liked-button-input" type="submit"><i class="fas fa-heart liked-button"></i></button>
+            
+          </form>
+          <p class="num_like_red">
+          {{this.likes.length}}
+          </p>
+          {{else}}
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-outfit" method="post">
+            <button class="liked-button-input" type="submit"><i class="far fa-heart liked-button"></i></button>
+          </form>
+          <p class="num_like">
+          {{this.likes.length}}
+          </p>
+          {{/if}}
+          </div>
+        
         <img class="clothes-image" src="{{ this.imageTop }}" alt="picture" />
         <img class="clothes-image" src="{{ this.imageBottom }}" alt="picture" />
         <img class="clothes-image" src="{{ this.imageFeet }}" alt="picture" />
@@ -75,17 +100,7 @@
             <button class="edit-btn-item" type="submit">+ Add</button>
 
           </div>
-          {{#if this.liked}}
         </form>
-        <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-outfit" method="post">
-          <button type="submit">You liked this outfit</button>
-        </form>
-        {{else}}
-        </form>
-        <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-outfit" method="post">
-          <button type="submit">Like</button>
-        </form>
-        {{/if}}
       </div>
       {{/each}}
     </div>
@@ -97,8 +112,25 @@
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
-
-        <p>{{this.name}} has {{this.likes.length}} likes</p>
+ <div class="like_container">
+          {{#if this.liked}}
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
+            <button class="liked-button-input" type="submit"><i class="fas fa-heart liked-button"></i></button>
+            
+          </form>
+          <p class="num_like_red">
+          {{this.likes.length}}
+          </p>
+          {{else}}
+          <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
+            <button class="liked-button-input" type="submit"><i class="far fa-heart liked-button"></i></button>
+          </form>
+          <p class="num_like">
+          {{this.likes.length}}
+          </p>
+          {{/if}}
+          </div>
+        
 
         <form action="/mycommunity/{{ this._id }}/view-collection">
           <button class="add-to-collection" type="submit">
@@ -110,19 +142,7 @@
             Add collection
           </button>
 
-          {{#if this.liked}}
-        </form>
-        <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
-
-          <button type="submit">You liked this collection</button>
-        </form>
-        {{else}}
-        </form>
-        <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
-
-          <button type="submit">Like</button>
-        </form>
-        {{/if}}
+          
 
 
       </div>

@@ -33,13 +33,9 @@
       <h6>Edit your description</h6>
       <textarea
         name="description"
-        {{!-- maxlength="140" --}}
+        maxlength="140"
         value="{{ user.description }}"
-        class="description_input"
-      >
-            {{ user.description }}
-            </textarea
-      >
+        class="description_input">{{user.description}}</textarea>
       <h6>Edit your email</h6>
       <input
         class="email_input"

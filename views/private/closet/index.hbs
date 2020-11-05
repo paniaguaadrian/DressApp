@@ -59,7 +59,21 @@
         <div class="divider-items">
           <h1 class="item-name">{{ this.name }}</h1>
           <p>{{ this.description }}</p>
-          <p>{{this.name}} has {{this.likes.length}} likes</p>
+          <div class="like_container">
+          {{#if this.liked}}
+          
+          <i class="fas fa-heart liked-button-personal"></i>
+          <p class="num_like_red">
+            
+          {{this.likes.length}}
+  
+          </p>
+        
+          {{/if}}
+          </div>
+
+
+          
           <img class="clothes-image" src="{{ this.image }}" alt="picture" />
           <div class="items-buttons">
             <form action="/mycloset/{{ this._id }}/edit-item">
@@ -91,7 +105,20 @@
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
-        <p>{{this.name}} has {{this.likes.length}} likes</p>
+<div class="like_container">
+          {{#if this.liked}}
+          
+          <i class="fas fa-heart liked-button-personal"></i>
+          <p class="num_like_red">
+            
+          {{this.likes.length}}
+  
+          </p>
+        
+          {{/if}}
+          </div>
+
+        
         <img class="clothes-image" src="{{ this.imageTop }}" alt="picture" />
         <img class="clothes-image" src="{{ this.imageBottom }}" alt="picture" />
         <img class="clothes-image" src="{{ this.imageFeet }}" alt="picture"/>
@@ -125,7 +152,20 @@
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
-        <p>{{this.name}} has {{this.likes.length}} likes</p>
+
+        <div class="like_container">
+          {{#if this.liked}}
+          
+          <i class="fas fa-heart liked-button-personal"></i>
+          <p class="num_like_red">
+            
+          {{this.likes.length}}
+  
+          </p>
+        
+          {{/if}}
+          </div>
+        
         <form action="/mycloset/{{ this._id }}/add-collection">
           <button class="add-to-collection" type="submit">
             Add outfits to this collection
@@ -133,7 +173,7 @@
         </form>
         <div class="items-buttons">
           <form action="/mycloset/{{ this._id }}/edit-collection">
-            <button class="edit-btn-item" type="submit">Edit</button>
+            <button class="edit-btn-item" type="submit">View</button>
           </form>
           <form
             action="/mycloset/{{ this._id }}/delete-collection"
