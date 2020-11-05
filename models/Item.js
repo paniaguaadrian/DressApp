@@ -9,6 +9,7 @@ const itemSchema = new Schema({
     brand: String,
     price: Number,
     likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    liked: {type: Boolean, default: false},
 });
 
 // What is this?

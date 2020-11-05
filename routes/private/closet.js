@@ -21,6 +21,10 @@ router.get("/", withAuth, async (req, res, next) => {
         .exec();
       res.locals.currentUserInfo = userUpdated;
 
+      userUpdated.items.reverse()
+      userUpdated.outfits.reverse()
+      userUpdated.collections.reverse()
+
       res.render("private/closet/index.hbs", { userUpdated });
     } catch (error) {
       next(error);

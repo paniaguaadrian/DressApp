@@ -8,7 +8,7 @@ const notificationSchema = new Schema(
     collections: { type: Schema.Types.ObjectId, ref: "Collection" }, 
     item: { type: Schema.Types.ObjectId, ref: "Item" }, 
     outfit: { type: Schema.Types.ObjectId, ref: "Outfit" }, 
-    // switch: {type: Boolean, default: true}
+    upload: {type: Boolean, default: true}
     },
     { timestamps: true }
     );

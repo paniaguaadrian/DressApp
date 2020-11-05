@@ -1,8 +1,25 @@
 // General style for navigation app (clothes, outfits, collections)
 
 .clothes-container {
-  padding: 0 2rem;
+  padding: 0 0.5rem;
+  @include breakpoint-up(large) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
+
+// .each-item {
+//   margin-top: 1rem;
+//   display: flex;
+//   flex-direction: column;
+//   @include breakpoint-up(large) {
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//   }
+// }
 
 .add-button-profile {
   background-color: $t-color;
@@ -12,6 +29,7 @@
   width: 8rem;
   height: 2rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .add-collection-profile {
@@ -22,6 +40,7 @@
   width: 9rem;
   height: 2rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 .divider-section-app {
@@ -34,6 +53,11 @@
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
+  @include breakpoint-up(large) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .divider-items {
@@ -41,6 +65,7 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
+  margin: 2rem 1rem 1rem 1rem;
   margin-top: 2rem;
   border: 1.5px solid $t-color;
   background-color: $bg-color;
@@ -49,6 +74,11 @@
   -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  @include breakpoint-up(large) {
+    justify-content: space-between;
+    align-items: center;
+    width: 23rem;
+  }
 }
 
 .items-buttons {
@@ -102,20 +132,63 @@
 
 // Add clothes style
 
+.container-container {
+  @include breakpoint-up(large) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.container-container-notis {
+  @include breakpoint-up(large) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .add-item-container {
   padding: 1rem;
   font-family: $body-font;
+  @include breakpoint-up(large) {
+    width: 75%;
+  }
+}
+
+.type-of-clothes {
+  @include breakpoint-up(large) {
+    font-size: 1.5rem;
+  }
 }
 
 .add-item-title {
   font-family: $logo-font;
   margin-bottom: 2rem;
   text-align: center;
+  @include breakpoint-up(large) {
+    font-size: 4rem;
+  }
 }
 
 .add-item-form {
   display: flex;
   flex-direction: column;
+  @include breakpoint-up(large) {
+    font-size: 1.5rem;
+  }
+}
+
+.add-item-form-outfit {
+  display: flex;
+  flex-direction: column;
+  @include breakpoint-up(large) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 3rem;
+  }
 }
 
 .add-item-radio {
@@ -123,6 +196,9 @@
   flex-direction: column;
   margin: 0.5rem 0 0.5rem 0;
   justify-content: space-evenly;
+  @include breakpoint-up(large) {
+    margin: 1.5rem 0 1.5rem 0;
+  }
 }
 
 .add-item-radio-item {
@@ -130,6 +206,9 @@
   flex-direction: row;
   align-items: center;
   margin: 0.5rem 0;
+  @include breakpoint-up(large) {
+    margin: 1.5rem 0 1.5rem 0;
+  }
 }
 
 label {
@@ -138,6 +217,9 @@ label {
 
 .add-item-label {
   margin-bottom: 0.5rem;
+  @include breakpoint-up(large) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .add-item-input {
@@ -154,6 +236,11 @@ label {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  @include breakpoint-up(large) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 }
 
 .edit-item-image-add {
@@ -162,6 +249,10 @@ label {
 
 .clothes-image-title {
   margin-bottom: 1rem;
+  @include breakpoint-up(large) {
+    font-size: 2rem;
+    margin-top: 4rem;
+  }
 }
 
 .select-clothes-title {
@@ -169,12 +260,20 @@ label {
   margin-bottom: 0.5rem;
   font-size: 1rem;
   font-weight: bold;
+  @include breakpoint-up(large) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .select-item-title {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
+  @include breakpoint-up(large) {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .delete-item-button {

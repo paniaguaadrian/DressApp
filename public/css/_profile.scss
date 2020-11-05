@@ -25,22 +25,39 @@
   -webkit-box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 4px 23px -10px rgba(0, 0, 0, 0.75);
+
+  @include breakpoint-up(large) {
+    width: 26rem;
+  }
 }
 
 .profile_name {
   font-size: 1.5rem;
   text-align: center;
   margin: 1.5rem 0;
+  @include breakpoint-up(large) {
+    font-size: 3rem;
+  }
 }
 
 .description_title {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   justify-content: left;
+  @include breakpoint-up(large) {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
 }
 
 .profile_description {
   font-size: 0.8rem;
+  @include breakpoint-up(large) {
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 0 2rem;
+    margin: 1rem 10rem 2rem 10rem;
+  }
 }
 
 .user-btn {
@@ -49,6 +66,9 @@
   flex-direction: row;
   justify-content: space-evenly;
   //   padding: 0 2rem;
+  @include breakpoint-up(large) {
+    margin-top: 5rem;
+  }
 }
 
 .logout-btn {
@@ -68,4 +88,55 @@
   width: 75%;
   border: none;
   border-bottom: 0.5px solid $t-color;
+}
+
+.container-notification {
+  margin-top: 1rem;
+  padding: 1rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #27acca41;
+  border-radius: 10px;
+  background-color: #27acca13;
+  -webkit-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 4px 27px -11px rgba(0, 0, 0, 0.75);
+  @include breakpoint-up(large) {
+    margin-top: 2rem;
+    width: 70%;
+    height: 4rem;
+  }
+}
+
+.image-notification {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.allnotis-container {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  @include breakpoint-up(large) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.notification-text {
+  margin: 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.delete-notification {
+  border: none;
+  background-color: transparent !important;
+}
+
+.x-delete {
+  color: #27abca;
 }
