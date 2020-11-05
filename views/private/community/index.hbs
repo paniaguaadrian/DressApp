@@ -140,12 +140,23 @@
       {{#each notifications}}
       <div class="container-notification">
         <img class="image-notification" src="{{ this.name.image }}" alt="" />
+        {{#if this.upload}}
         <p class="notification-text">
           <a class="link_name_noti" href="mycommunity/{{ this.name.id }}/closet">{{ this.name.name }}</a>
            has <span class="notification-text-bold">uploaded</span> a new <span class="notification-text-bold">{{ this.type }}:</span><br>
           {{ this.item.name }} {{ this.outfit.name }}
           {{ this.collections.name }}
         </p>
+        {{else}}
+        <p>
+          <p class="notification-text">
+          <a class="link_name_noti" href="mycommunity/{{ this.name.id }}/closet">{{ this.name.name }}</a>
+           has <span class="notification-text-bold"> liked</span> your <span class="notification-text-bold">{{ this.type }}:</span><br>
+          {{ this.item.name }} {{ this.outfit.name }}
+          {{ this.collections.name }}
+        </p>
+        </p>
+        {{/if}}
         <form
           action="/mycommunity/{{ this._id }}/delete-notification"
           method="post"
