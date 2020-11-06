@@ -115,7 +115,7 @@
       <div class="divider-items">
         <h1 class="item-name">{{ this.name }}</h1>
         <p>{{ this.description }}</p>
- <div class="like_container">
+      <div class="like_container">
           {{#if this.liked}}
           <form action="/mycommunity/{{ ../thisUser._id }}/closet/{{this._id}}/like-collection" method="post">
             <button class="liked-button-input" type="submit"><i class="fas fa-heart liked-button"></i></button>
@@ -144,6 +144,7 @@
           <button class="add-to-collection" style="margin-bottom: 1rem" type="submit">
             Add collection
           </button>
+        </form>
 
           
 
